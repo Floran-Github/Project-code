@@ -1,0 +1,71 @@
+{% extends 'home.html' %}
+
+{% block title %}Students{% endblock title %}
+
+{% block breadcrumb %}
+<a class="btn btn-primary" href="{% url 'student-create' %}"><i
+    class="fas fa-plus"></i> New student</a>
+<a class="btn btn-primary" href="{% url 'student-upload' %}"><i
+    class="fas fa-upload"></i> Upload students</a>
+{% endblock breadcrumb %}
+
+{% block content %}
+  <div class="table-responsive">
+    <form action="" method="get">
+      <div class="row">
+        <div class="col-lg-7 col-sm-12">
+          {{ filter.form.as_p }}
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i>  Search</button>
+          <br>
+        </div>
+      </div>
+    </form>
+    <table id="studenttable" class="table table-bordered table-hover" data-page-length='100'>
+      <thead class="thead-light">
+        <tr>
+          <th>S/N</th>
+          <th>Fullname</th>
+          <th>Gr Number</th>
+          <th>Current Year</th>
+          <th>Departmenrt</th>
+          <th>Roll Number</th>
+          <th>Gender</th>
+          <th>Mobile Phone Number</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for student in filter.qs %}
+          <tr class='clickable-row' data-href="{% url 'student-detail' student.id %}">
+            <td>{{ forloop.counter}}</td>
+            <td>{{ student.surname}} {{student.firstname }} </td>
+            
+            <td>{{ student.Gr_number}}</td>
+
+            <td>{{ student.current_year}}</td>
+            <td>{{ student.current_dept}}</td>
+
+            <td>{{ student.Roll_number}}</td>
+
+            <td>{{ student.get_gender_display}}</td>
+            <td>{{ student.parent_mobile_number}}</td>
+            <td>{{ student.get_current_status_display}}</td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}
+
+
+{% block morejs %}
+<script>
+  $('#studenttable').DataTable({
+  });
+</script>
+
+{% endblock morejs %}

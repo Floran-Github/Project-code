@@ -1,0 +1,9 @@
+Gr_number,surname,firstname,Roll_number,gender,Father_Name,Mother_Name,address,date_of_birth,date_of_admission,current_year,current_dept,parent_mobile_number
+2,khan ,Saif ur rahman,19co35,Male,Farid Ur Rahman,sdadasd,"302,b-wing,akbar mansion,new anasagar chs,asalpha,mumbai-72",8/18/2001,8/18/2020,Second,Computer,7039691123
+3,khan ,Humaid ur rahman,19co36,Male,Farid Ur Rahman,sdadasd,"302,b-wing,akbar mansion,new anasagar chs,asalpha,mumbai-73",8/19/2001,8/19/2020,Second,Computer,7039691123
+4,khan ,Faiz ur rahman,19co37,Male,Farid Ur Rahman,sdadasd,"302,b-wing,akbar mansion,new anasagar chs,asalpha,mumbai-74",8/20/2001,8/20/2020,Second,Computer,7039691123
+5,khan ,Farhan Nitrate,19co38,Male,Nadeem,sdadasd,"302,b-wing,akbar mansion,new anasagar chs,asalpha,mumbai-75",8/21/2001,8/21/2020,Second,Computer,7039691123
+6,Ansari,Sarim,19co39,Male,Ajaz Akhtar,sdadasd,"302,b-wing,akbar mansion,new anasagar chs,asalpha,mumbai-76",8/22/2001,8/22/2020,Second,Computer,7039691123
+7,khan ,Simran,19co40,Female,Hasan,sdadasd,"302,b-wing,akbar mansion,new anasagar chs,asalpha,mumbai-77",8/23/2001,8/23/2020,Second,Computer,7039691123
+8,shaikh,Zikra,19co41,Female,Sami,sdadasd,"302,b-wing,akbar mansion,new anasagar chs,asalpha,mumbai-78",8/24/2001,8/24/2020,Second,Computer,7039691123
+9,khan ,Muskan,19co42,Female,Afsar,sdadasd,"302,b-wing,akbar mansion,new anasagar chs,asalpha,mumbai-79",8/25/2001,8/25/2020,Second,Computer,7039691123

@@ -1,0 +1,67 @@
+{% extends 'home.html' %}
+
+
+{% block content-header %}
+<div class="card-header">
+  <div class="card-tools">
+    <a href="#" class="btn btn-tool">Print</a>
+    <a href="{% url 'head-update' object.id %}" class="btn btn-tool">
+      <i class="fas fa-edit"></i>
+    </a>
+    <a href="{% url 'head-delete' object.id %}" class="btn btn-tool">
+      <i class="fas fa-times"></i>
+    </a>
+  </div>
+</div>
+{% endblock content-header %}
+
+{% block content %}
+    <div class="row">
+      <div class="col-sm-4">
+        <div>
+          <h2>{{ object.get_title_display }} </h2>
+          <br>
+          <h3>{{ object }} </h3>
+          <h5>{{ object.get_gender_display }} </h5>
+          
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div>
+          <div class="form-group border-bottom row">
+            <label class="col">
+              Department
+            </label>
+            <div class="col">
+              {{ object.department }}
+            </div>
+          </div>
+
+          <div class="form-group border-bottom row">
+            <label class="col">
+               From 
+            </label>
+            <div class="col">
+              {{ object.fromDate}}
+            </div>
+          </div>
+
+          <div class="form-group border-bottom row">
+            <label class="col">
+              To
+            </label>
+            <div class="col">
+              {{ object.toDate }}
+            </div>
+          </div>
+          
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+{% endblock content %}

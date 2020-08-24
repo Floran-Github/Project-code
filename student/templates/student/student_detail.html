@@ -1,0 +1,145 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block content-header %}
+<div class="card-header">
+  <div class="card-tools">
+    <a href="#" class="btn btn-tool">Print</a>
+    <a href="{% url 'student-update' object.id %}" class="btn btn-tool">
+      <i class="fas fa-edit"></i>
+    </a>
+    <a href="{% url 'student-delete' object.id %}" class="btn btn-tool">
+      <i class="fas fa-times"></i>
+    </a>
+  </div>
+</div>
+{% endblock content-header %}
+
+{% block content %}
+    <div class="row mb-4">
+      <div class="col-sm-4">
+        <div class="row mb-2">
+
+          {% if object.profile_pic %}
+            <img
+              src="{{ object.profile_pic.url }}"
+              class="float-left rounded-circle mr-3" style="width: 120px; height: 120px;">
+          {% else %}
+            <img
+              src="{% static 'dist/img/avatar.png' %}"
+              class="float-left rounded-circle mr-3" style="width: 120px; height: 120px;">
+          {% endif %}
+
+
+          <div class="float-right">
+            <h4>{{ object.surname }} </h4>
+            <h4>{{ object.firstname }} </h4>
+            
+          </div>
+        </div>
+        
+        <h5>{{ object.get_gender_display }} | {{ object.get_current_status_display }}</h5>
+
+      </div>
+      <div class="col-sm-8">
+        <div>
+          <div class="form-group border-bottom row">
+            <label class="col">
+              Gr Number
+            </label>
+            <div class="col">
+              <b>
+                {{ object.Gr_number }}
+              </b>
+            </div>
+          </div>
+
+
+          <div class="form-group border-bottom row">
+            <label class="col">
+              Date of Birth
+            </label>
+            <div class="col">
+              {{ object.date_of_birth }}
+            </div>
+          </div>
+
+          <div class="form-group border-bottom row">
+            <label class="col">
+              Current Year
+            </label>
+            <div class="col">
+              {{ object.current_year}}
+            </div>
+          </div>
+
+          <div class="form-group border-bottom row">
+            <label class="col">
+              Department
+            </label>
+            <div class="col">
+              {{ object.current_dept}}
+            </div>
+          </div>
+
+
+          <div class="form-group border-bottom row">
+            <label class="col">
+              Date of Admission
+            </label>
+            <div class="col">
+              {{ object.date_of_admission}}
+            </div>
+          </div>
+
+          <div class="form-group border-bottom row">
+            <label class="col">
+              Roll Number
+            </label>
+            <div class="col">
+              {{ object.Roll_number}}
+            </div>
+          </div>
+
+          <div class="form-group border-bottom row">
+            <label class="col">
+              Father Name
+            </label>
+            <div class="col">
+              {{ object.Father_Name}}
+            </div>
+          </div>
+
+          <div class="form-group border-bottom row">
+            <label class="col">
+              Mother Name
+            </label>
+            <div class="col">
+              {{ object.Mother_Name}}
+            </div>
+          </div>
+
+          <div class="form-group border-bottom row">
+            <label class="col">
+              Parent Mobile Number
+            </label>
+            <div class="col">
+              {{ object.parent_mobile_number}}
+            </div>
+          </div>
+
+          
+
+          
+         
+
+        </div>
+
+      </div>
+    </div>
+
+    
+
+
+
+{% endblock content %}

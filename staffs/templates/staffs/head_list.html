@@ -1,0 +1,49 @@
+{% extends 'home.html' %}
+
+{% block title %}Teacher{% endblock title %}
+
+{% block breadcrumb %}
+<a class="btn btn-primary" href="{% url 'head-create' %}"><i
+    class="fas fa-plus"></i> New Teacher</a>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="table-responsive">
+  <table id="headtable" class="table table-bordered table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th>S/N</th>
+        <th>Fullname</th>
+        <th>Gender</th>
+        <th>Mobile Phone Number</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for head in object_list %}
+        <tr class='clickable-row' data-href="{% url 'head-detail' head.id %}">
+          <td>{{ forloop.counter}}</td>
+          <td>{{ head.surname}} {{head.firstname }}</td>
+          <td>{{ head.get_gender_display}}</td>
+
+          <td>{{ head.mobile_number}}</td>
+          
+          <td>{{ head.get_current_status_display}}</td>
+        </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+{% endblock content %}
+
+
+{% block morejs %}
+<script>
+   $('#headtable').DataTable({
+    select: false
+    });
+</script>
+
+{% endblock morejs %}
