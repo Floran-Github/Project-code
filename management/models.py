@@ -27,6 +27,7 @@ class Subject(models.Model):
     ''' Year '''
 
     name = models.CharField(max_length=50, unique=True)
+    course_code = models.CharField(max_length=50,unique=True)
 
     class Meta:
         ordering = ['name']
