@@ -24,10 +24,11 @@ class Year(models.Model):
 
 
 class Subject(models.Model):
-    ''' Year '''
+    ''' Subject '''
 
     name = models.CharField(max_length=50, unique=True)
-    course_code = models.CharField(max_length=50,unique=True)
+    Coursecode = models.CharField(max_length=50, null = True)
+    
 
     class Meta:
         ordering = ['name']

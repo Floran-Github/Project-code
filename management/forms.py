@@ -19,4 +19,4 @@ class SubjectForm(ModelForm):
   prefix = 'Subject'
   class Meta:
     model = Subject
-    fields = ['name']
+    fields = ['name','Coursecode']

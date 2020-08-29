@@ -11,8 +11,8 @@ from django.core.validators import RegexValidator
 
 class Student(models.Model):
   STATUS = [
-      ('active', 'Active'),
-      ('inactive', 'Inactive')
+      ('regular', 'Regular'),
+      ('drop', 'Drop')
   ]
 
   GENDER = [
@@ -20,7 +20,7 @@ class Student(models.Model):
       ('female', 'Female')
   ]
 
-  current_status        = models.CharField(max_length=10, choices=STATUS, default='active')
+  current_status        = models.CharField(max_length=10, choices=STATUS, default='regular')
   Gr_number             = models.CharField(max_length=200, unique=True)
   
   surname               = models.CharField(max_length=200)

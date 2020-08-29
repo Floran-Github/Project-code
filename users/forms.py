@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
-from create_users.models import CustomUser
+# from create_users.models import CustomUser
 
 
 class UserRegisterForm(UserCreationForm):

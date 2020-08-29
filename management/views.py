@@ -102,7 +102,7 @@ class YearDeleteView(LoginRequiredMixin, DeleteView):
       obj = self.get_object()
       print(obj.name)
       messages.success(self.request, self.success_message.format(obj.name))
-      return super(ClassDeleteView, self).delete(request, *args, **kwargs)
+      return super(YearDeleteView, self).delete(request, *args, **kwargs)
 
 #subject
 

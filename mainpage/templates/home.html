@@ -81,19 +81,28 @@
                 <li class="nav-item has-treeview">
 
                     <li class="nav-item">
+                      <a href="{% url 'create' %}" class="nav-link"> 
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>
+                        Create Student Users
+                        </p>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
                       <a href="{% url 'staff-list' %}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                          Teacher
+                        Teacher
                         </p>
                       </a>
                     </li>
 
                     <li class="nav-item">
                       <a href="{% url 'head-list' %}" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
+                        <i class="nav-icon fas fa-heading"></i>
                         <p>
-                          Head
+                        Head
                         </p>
                       </a>
                     </li>

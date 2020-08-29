@@ -1,0 +1,28 @@
+{% extends 'home.html' %}
+
+{% block title %}Teacher{% endblock title %}
+
+{% block breadcrumb %}
+<a class="btn btn-primary" href="{% url 'create' %}">
+    <i class="fas fa-chevron-left"></i> Back</a>
+{% endblock breadcrumb %}
+
+{% block content %}
+    <div class="row">
+        New Number of Users Created {{newUser}}
+    </div>
+
+    <div class="row">
+        Already exists {{duplicateUser}}
+    </div>
+{% endblock content %}
+
+
+{% block morejs %}
+<script>
+   $('#stafftable').DataTable({
+    select: false
+    });
+</script>
+
+{% endblock morejs %}
