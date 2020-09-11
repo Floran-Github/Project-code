@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'management.apps.ManagementConfig',
     'staffs.apps.StaffsConfig',
     'users.apps.UsersConfig',
+    'elements.apps.ElementsConfig',
     'create_users.apps.CreateUsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',

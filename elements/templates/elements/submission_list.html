@@ -1,0 +1,108 @@
+{% extends 'home.html' %}
+
+{% block title %}Submission{% endblock title %}
+
+{% block breadcrumb %}
+<!-- <a class="btn btn-primary" href="{% url 'element-create' %}"><i
+    class="fas fa-plus"></i> New element</a> -->
+{% endblock breadcrumb %}
+
+{% block content %}
+
+{% if test2 %}
+<h2>Submitted</h2>
+<br>
+<br>
+{% for a in test2 %}
+<div class="table-responsive">
+  <table id="stafftable" class="table table-bordered table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th>S/N</th>
+        <th>Name</th>
+        <th>Performed at</th>
+        <th>Last date to submit</th>
+      </tr>
+    </thead>
+    <h3> {{a}} </h3>
+{% for i in sub %}
+
+    {% if a == i.subject %}
+  <tbody>
+    
+        <tr style="background-color: #36b122; color: #fff;" id='test'class='clickable-row' data-href="{% url 'submission-update' i.id %} ">
+          <td>{{ forloop.counter}}</td>
+          <td>{{ i.element_name}}</td>
+          <td>{{ i.created_date}}</td>
+          <td>{{ i.due_date}}</td>
+        </tr>
+  </tbody>
+  {% endif %}
+{% endfor %}
+</table>
+</div>
+
+{% endfor %}
+{% endif %}
+
+
+{% if test %}
+<hr style="
+   height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+">
+<br>
+<h2>Unsubmitted</h2>
+<br>
+<br>
+
+{% for a in test %}
+<div class="table-responsive">
+  <table id="stafftable" class="table table-bordered table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th>S/N</th>
+        <th>Name</th>
+        <th>Performed at</th>
+        <th>Last date to submit</th>
+      </tr>
+    </thead>
+    <h3> {{a}} </h3>
+{% for i in ped %}
+
+    {% if a == i.subject %}
+  <tbody>
+    
+    <tr id='test'class='clickable-row' data-href="{% url 'submission' i.id %}">
+          <td>{{ forloop.counter}}</td>
+          <td>{{ i.element_name}}</td>
+          <td>{{ i.created_date}}</td>
+          <td>{{ i.due_date}}</td>
+        </tr>
+  </tbody>
+  {% endif %}
+{% endfor %}
+</table>
+</div>
+
+{% endfor %}
+{% endif %}
+
+{% for j in test2 %}
+{{j}}
+{% endfor %}
+
+{% endblock content %}
+
+
+{% block morejs %}
+<script>
+    
+  
+   $('#stafftable').DataTable({
+    select: false
+    });
+</script>
+
+{% endblock morejs %}

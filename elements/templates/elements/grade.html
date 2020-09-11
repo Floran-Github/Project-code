@@ -1,0 +1,49 @@
+{% extends 'home.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+
+  {% if object %}
+    Gradding the Assignment {{ object }}
+  {% else %}
+    Grading 
+  {% endif %}
+
+{% endblock title %}
+
+
+{% block content %}
+
+<form action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  {% for field in form %}
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="{{ field.auto_id }}">
+                {{ field.label }}
+                {% for error in field.errors %}
+                <small id="{{ field.auto_id }}" class="text-danger">{{ error }}</small>
+                {% endfor %}
+            </label>
+            <div class="col-sm-4">
+                {{ field | add_class:"form-control"}}
+
+                {% if field.help_text %}
+                <small>{{ field.help_text|safe }}</small>
+                {% endif %}
+            </div>
+            <div class="col-sm-9">
+                <b>uploaded file</b> - &emsp; &emsp; &emsp; <a class="btn btn-dark btn-file" href="{{ object.upload.url }}">file</a>
+            </div>
+        </div>
+    {% endfor %}
+  
+  {% if object %}
+    <input type="submit" class="btn btn-primary" value="Update Record">
+  {% else %}
+    <input type="submit" class="btn btn-primary" value="Complete">
+  {% endif %}
+</form>
+
+
+{% endblock content %}

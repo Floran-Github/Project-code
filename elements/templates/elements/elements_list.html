@@ -1,0 +1,46 @@
+{% extends 'home.html' %}
+
+{% block title %}ELEMENT{% endblock title %}
+
+{% block breadcrumb %}
+<a class="btn btn-primary" href="{% url 'element-create' %}"><i
+    class="fas fa-plus"></i> New element</a>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="table-responsive">
+  <table id="stafftable" class="table table-bordered table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th>S/N</th>
+        <th>Name</th>
+        <th>Performed at</th>
+        <th>Last date to submit</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for elements in object_list %}
+        <tr class='clickable-row' data-href="{% url 'element-detail' elements.id %}">
+          <td>{{ forloop.counter}}</td>
+          <td>{{ elements.element_name}}</td>
+          <td>{{ elements.created_at}}</td>
+          <td>{{ elements.due_date}}</td>
+          
+        </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+{% endblock content %}
+
+
+{% block morejs %}
+<script>
+   $('#stafftable').DataTable({
+    select: false
+    });
+</script>
+
+{% endblock morejs %}

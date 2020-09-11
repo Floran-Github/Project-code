@@ -1,0 +1,58 @@
+{% extends 'home.html' %}
+
+
+{% block content-header %}
+<div class="card-header">
+  <div class="card-tools">
+    <a href="#" class="btn btn-tool">Print</a>
+    <a href="{% url 'submission-update' object.id %}" class="btn btn-tool">
+      <i class="fas fa-edit"></i>
+    </a>
+    <a href="{% url 'element-delete' object.id %}" class="btn btn-tool">
+      <i class="fas fa-times"></i>
+    </a>
+  </div>
+</div>
+{% endblock content-header %}
+
+{% block content %}
+    <div class="row">
+      <div class="col-12">
+        <h3>
+          {{object.element_name}}
+        </h3>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="col-12">
+        <h5>
+          Date - {{object.submitted_at}}
+        </h5>
+      </div>
+      <div class="col-12">
+        <h5>
+          Due  {{object.last_updated}}
+        </h5>
+      </div>
+
+      
+      <div class="row">
+        <div class="file-field input-field col s12">
+          <div class="btn col s6">
+            <a class="btn btn-dark btn-file" href="{{ object.upload.url }}">
+            Your file
+            </a>
+          </div>
+          <!-- <div class="file-path-wrapper col s6">
+            <input class="file-path validate" type="text" placeholder="Upload one or more files">
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+
+
+
+{% endblock content %}

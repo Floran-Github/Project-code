@@ -1,7 +1,7 @@
-"""floran URL Configuration
+"""pratice URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.0/topics/http/urls/
+    https://docs.djangoproject.com/en/3.1/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -20,17 +20,17 @@ from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from users import views as user_views
 from django.conf.urls.static import static
-# urlpatterns = patterns('',
-#     (r'^$', TemplateView.as_view(template_name="index.html")),
-# )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('mainpage.urls')),
-    path('manage/',include('management.urls')),
+   
     path('student/',include('student.urls')),
-    path('staff/', include('staffs.urls')),
+    path('manage/',include('management.urls')),
     path('create_user/', include('create_users.urls')),
+    path('staff/', include('staffs.urls')),
+    path('element/', include('elements.urls')),
+    
     path('profile/',user_views.profile, name='profile'),
     path('login/',auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
@@ -41,3 +41,5 @@ urlpatterns = [
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+# www.google.com
+#

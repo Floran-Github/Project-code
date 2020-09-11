@@ -21,7 +21,7 @@ class Staff(models.Model):
   surname             = models.CharField(max_length=200)
   firstname           = models.CharField(max_length=200)
   
-  Subject             = models.ForeignKey(Subject, on_delete=models.SET_NULL, blank=True, null=True)
+  # Subject             = models.ForeignKey(Subject, on_delete=models.SET_NULL, blank=True, null=True)
 
   gender              = models.CharField(max_length=10, choices=GENDER, default='male')
   date_of_birth       = models.DateField(default=timezone.now)
@@ -56,7 +56,7 @@ class Head(models.Model):
   surname             = models.CharField(max_length=200)
   firstname           = models.CharField(max_length=200)
 
-  department          = models.ForeignKey(Department,on_delete=models.CASCADE)
+  # department          = models.ForeignKey(Department,on_delete=models.CASCADE)
   title               = models.CharField(max_length=10, choices=STATUS, default='head')
 
   gender              = models.CharField(max_length=10, choices=GENDER, default='male')

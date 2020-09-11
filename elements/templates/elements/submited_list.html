@@ -1,0 +1,48 @@
+{% extends 'home.html' %}
+
+{% block title %}All Submitted files{% endblock title %}
+
+{% block breadcrumb %}
+<!-- <a class="btn btn-primary" href="{% url 'element-create' %}"><i
+    class="fas fa-plus"></i> New element</a> -->
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="table-responsive">
+  <table id="stafftable" class="table table-bordered table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th>S/N</th>
+        <th>Name</th>
+        <th>Performed at</th>
+        <th>Grade</th>
+        <th>Submitted/Unsubmiited</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for elements in object_list %}
+        <tr class='clickable-row' data-href="{% url 'grade' elements.id %}">
+          <td>{{ forloop.counter}}</td>
+          <td>{{ elements.user}}</td>
+          <td>{{ elements.submitted_at}}</td>
+          <td>{{ elements.grade}}</td>
+          <td>{{ elements.submission_status}}</td>
+          
+        </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+{% endblock content %}
+
+
+{% block morejs %}
+<script>
+   $('#stafftable').DataTable({
+    select: false
+    });
+</script>
+
+{% endblock morejs %}

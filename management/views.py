@@ -76,7 +76,7 @@ class YearListView(LoginRequiredMixin, SuccessMessageMixin, ListView):
 
 class YearCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
   form_class = YearForm
-  template_name = 'management/mgt_form.html'
+  template_name = 'management/year.html'
   success_url = reverse_lazy('Year')
   success_message = 'New class successfully added'
 
@@ -84,10 +84,10 @@ class YearCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 class YearUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
   model = Year
-  fields = ['name']
+  form_class = YearForm
   success_url = reverse_lazy('Year')
   success_message = 'class successfully updated.'
-  template_name = 'management/mgt_form.html'
+  template_name = 'management/year.html'
 
 
 

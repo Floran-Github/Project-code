@@ -13,10 +13,13 @@ class YearForm(ModelForm):
   prefix = 'Class'
   class Meta:
     model = Year
-    fields = ['name']
+    fields = ['name','dept','subjects']
+    widgets = {
+            'subjects': forms.CheckboxSelectMultiple,
+        }
 
 class SubjectForm(ModelForm):
   prefix = 'Subject'
   class Meta:
     model = Subject
-    fields = ['name','Coursecode']
+    fields = ['name','Coursecode','teacher']

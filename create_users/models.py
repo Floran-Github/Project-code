@@ -5,6 +5,6 @@ from student.models import Student
 class studentUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     student_id = models.ForeignKey(Student,on_delete=models.CASCADE)
-# Create your models here.
+
     def __str__(self):
-        return student_id
+       return f'{self.user.username}'

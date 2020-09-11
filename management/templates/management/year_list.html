@@ -50,14 +50,11 @@ Year
           <div class="modal-body">
               {% csrf_token %}
 
-              {% for field in form %}
+              
                   <div class="form-group">
-                    {{field.label_tag}}
-                    {{ field|add_class:"form-control" }}
-                    {{field.help_text}}
-                    {{field.errors}}
+                    {{ form.as_p }}
                   </div>
-              {% endfor %}
+              
           </div>
 
           <div class="modal-footer">
