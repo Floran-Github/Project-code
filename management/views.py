@@ -128,7 +128,7 @@ class SubjectCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 class SubjectUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
   model = Subject
-  fields = ['name']
+  fields = ['name','Coursecode','teacher']
   success_url = reverse_lazy('subjects')
   success_message = 'Subject successfully updated.'
   template_name = 'management/mgt_form.html'

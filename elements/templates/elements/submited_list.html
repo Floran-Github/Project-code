@@ -8,6 +8,12 @@
 {% endblock breadcrumb %}
 
 {% block content %}
+
+{% for i in subject %}
+<h2>{{i}}</h2>
+{% for j in element_id %}
+      {% if i == j.subject %}
+      
 <div class="table-responsive">
   <table id="stafftable" class="table table-bordered table-hover">
     <thead class="thead-light">
@@ -19,22 +25,30 @@
         <th>Submitted/Unsubmiited</th>
       </tr>
     </thead>
-    <tbody>
+    
+    <h3>{{j}}</h3>
 
-      {% for elements in object_list %}
-        <tr class='clickable-row' data-href="{% url 'grade' elements.id %}">
-          <td>{{ forloop.counter}}</td>
-          <td>{{ elements.user}}</td>
-          <td>{{ elements.submitted_at}}</td>
-          <td>{{ elements.grade}}</td>
-          <td>{{ elements.submission_status}}</td>
-          
-        </tr>
-      {% endfor %}
-
-    </tbody>
+        {% for elements in test %}
+          {% if j == elements.assignment %}
+            <tbody>
+                <tr class='clickable-row' data-href="{% url 'grade' elements.id %}">
+                  <td>{{ forloop.counter}}</td>
+                  <td>{{ elements.user}}</td>
+                  <td>{{ elements.submitted_at}}</td>
+                  <td>{{ elements.grade}}</td>
+                  <td>{{ elements.submission_status}}</td>
+                  
+                </tr>
+            </tbody>
+          {% endif %}
+        {% endfor %}
+     
   </table>
 </div>
+{% endif %}
+{% endfor %}
+{% endfor %}
+
 {% endblock content %}
 
 

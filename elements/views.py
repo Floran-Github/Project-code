@@ -167,8 +167,36 @@ class SubmissionDetailView(DetailView):
 ############################ TEACHER PART ##############################################
 
 class SubimittedListView(ListView):
-    model = Submissions
+    # model = Submissions
     template_name = 'elements\submited_list.html'
+
+    def get_queryset(self):
+        username = self.request.user.username
+        username = username.split(".")
+
+        self.teacher = Staff.objects.filter(firstname = username[0]).values()[0]['id']
+        self.teacher_subject = Subject.objects.filter(teacher_id = self.teacher)
+
+        print(self.teacher_subject)
+
+        self.submit = Elements.objects.filter(subject__in=self.teacher_subject)
+
+        print(self.submit)
+        print(Submissions.objects.filter(assignment__in = self.submit))
+        self.a =[]
+        for i in self.submit:
+            self.a.append(i.subject)
+
+        print(self.a)
+    
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(SubimittedListView , self).get_context_data(**kwargs)
+        
+        context['test'] = Submissions.objects.filter(assignment__in = self.submit)
+        context['subject'] = self.teacher_subject
+        context['element_id'] = self.submit
+
+        return context
 
 
 class GradeView(SuccessMessageMixin, UpdateView):

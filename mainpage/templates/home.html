@@ -79,7 +79,7 @@
           <ul class="nav nav-pills nav-sidebar flex-column"data-widget="treeview" role="menu" data-accordion="false">
                 
                 <li class="nav-item has-treeview">
-
+                  {% if request.user.is_superuser %}
                     <li class="nav-item">
                       <a href="{% url 'create' %}" class="nav-link"> 
                         <i class="nav-icon fas fa-user-plus"></i>
@@ -89,6 +89,7 @@
                       </a>
                     </li>
 
+                   
                     <li class="nav-item">
                       <a href="{% url 'create-teacher' %}" class="nav-link"> 
                         <i class="nav-icon fas fa-user-plus"></i>
@@ -98,6 +99,7 @@
                       </a>
                     </li>
 
+                    
                     <li class="nav-item">
                       <a href="{% url 'staff-list' %}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
@@ -107,6 +109,7 @@
                       </a>
                     </li>
 
+                    
                     <li class="nav-item">
                       <a href="{% url 'head-list' %}" class="nav-link">
                         <i class="nav-icon fas fa-heading"></i>
@@ -132,6 +135,9 @@
                             </p>
                         </a>
                     </li>
+                    {% endif %}
+
+                    {% if request.user.is_staff %}
                     <li class="nav-item">
                         <a href="{% url 'element-list' %}" class="nav-link">
                             <i class="nav-icon fas fa-bars"></i>
@@ -140,14 +146,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'submission-list' %}" class="nav-link">
-                            <i class="nav-icon fas fa-bars"></i>
-                            <p>
-                            Submissions
-                            </p>
-                        </a>
-                    </li>
+                    
 
                     <li class="nav-item">
                         <a href="{% url 'submit-list' %}" class="nav-link">
@@ -157,6 +156,18 @@
                             </p>
                         </a>
                     </li>
+                    {% endif %}
+                    {% if request.user.is_staff == False %}
+                    <li class="nav-item">
+                      <a href="{% url 'submission-list' %}" class="nav-link">
+                          <i class="nav-icon fas fa-bars"></i>
+                          <p>
+                          Submissions
+                          </p>
+                      </a>
+                  </li>
+                  {% endif %}
+                    {% if request.user.is_superuser %}
                     <li class="nav-item">
                         <a href="{% url 'Department' %}" class="nav-link">
                             <i class="nav-icon fas fa-bars"></i>
@@ -173,6 +184,7 @@
                             </p>
                         </a>
                     </li>
+                    {% endif %}
                 <ul class="nav nav-treeview">
                         
                 </ul>
