@@ -32,7 +32,7 @@
 
         
         {% for j in i.student.all %}
-          <tr class='clickable-row' data-href="{% url 'student-detail' i.id %}">
+          <tr class='clickable-row' data-href="{% url 'student-detail' j.id %}">
             <td>{{ forloop.counter}}</td>
             <td>{{ j.Roll_number }}  </td>
             <td>{{ j.surname }}  </td>
