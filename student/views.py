@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 import csv
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -11,9 +11,12 @@ from django.views.generic import DetailView,ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.forms import widgets
 from django.urls import reverse_lazy
+from django.contrib import messages
 
 from .models import Student, StudentBulkUpload
 from .filters import *
+from .forms import *
+from management.models import  *
 
 # from finance.models import Invoice
 
@@ -109,3 +112,113 @@ def downloadcsv(request):
                      'parent_mobile_number'])
 
     return response
+
+
+class BatchListView(LoginRequiredMixin, SuccessMessageMixin, ListView):
+  model = Batch
+  template_name = 'student/batchs_list.html'
+
+  
+
+  def get_context_data(self, **kwargs):
+      year_list = Year.objects.all().order_by('name')
+      dept_list = Department.objects.all()
+      batch_list = Batch.objects.all()
+      sorted_year_list = []
+      sorted_dept_list = []
+      sorted_year_list_name = []
+      sorted_dept_list_name = []
+      
+      for i in batch_list:
+            sorted_year_list.append(i.year)
+            sorted_year_list_name.append(i.year.name)
+            sorted_dept_list.append(i.dept)
+            sorted_dept_list_name.append(i.dept.name)
+
+
+      sorted_year_list = set(sorted_year_list)
+      sorted_dept_list = set(sorted_dept_list)
+
+    #   for i in range(0,len(sorted_year_list_name)-2):
+    #     print(i)
+    #     if sorted_year_list_name[i] == sorted_year_list_name[i+1]:
+    #         sorted_year_list_name.remove(sorted_year_list_name[i+1])
+
+    #   a = set(sorted_year_list_name)
+      a = set()
+      b = [x for x in sorted_year_list_name if not (x in a or a.add(x))]
+      b.sort()
+      print(b)
+    #   print(seen)
+          
+      sorted_dept_list_name = set(sorted_dept_list_name)
+
+    #   print(sorted_year_list)
+    #   print(sorted_dept_list)
+    #   print(sorted_year_list_name)
+    #   print(sorted_dept_list_name)
+
+      context = super().get_context_data(**kwargs)
+      context['form'] = BatchForm()
+      context['years'] = sorted_year_list
+      context['depts'] = sorted_dept_list
+      context['years_name'] = b
+      context['depts_name'] = sorted_dept_list_name
+      return context
+
+@login_required
+def BatchCreate(request):
+    if request.method == 'POST':
+        form = BatchForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            a = form.cleaned_data['number']
+            b = form.cleaned_data['year']
+            c = form.cleaned_data['dept']
+
+            student = Student.objects.filter(current_year_id = b,current_dept_id = c)
+            no_batch = int(len(student)/a)
+            if no_batch >= 1:
+                student_divide = [student[i:i+no_batch] for i in range(0,len(student),no_batch)]
+
+                
+                for i,j in enumerate(student_divide):
+                    print(i)
+                    print(j)
+                    try:
+                        batch_name = 'Batch - {}'.format(i+1)
+                        # Batch.student.add(*j)
+                        # form.save()
+                        batch = Batch(batch_no=batch_name,dept=c,year=b)
+                        batch.save()
+                        batch_add = Batch.objects.get(batch_no=batch_name,dept=c,year=b)
+                        batch_add.student.add(*j)
+
+                        print(batch)
+                    except:
+                        messages.error(request,'Batch already exists')
+                        break
+            else:
+                messages.error(request,'Number of batch should not be more than the number of student')
+                
+            return redirect('batch')
+  
+
+class BatchStudentListView(ListView):
+    model = Batch
+    template_name = 'student/batch_list.html'
+
+    def get_queryset(self,*args, **kwargs):
+        pass
+      
+    def get_context_data(self,**kwargs):
+
+        context = super(BatchStudentListView, self).get_context_data(**kwargs)
+        context['form'] = Batch.objects.filter(pk=self.kwargs.get('pk'))
+
+        return context
+
+        
+class BatchDeleteView(LoginRequiredMixin, DeleteView):
+    model = Batch
+    success_url = reverse_lazy('batch')

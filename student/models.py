@@ -59,3 +59,13 @@ class StudentBulkUpload(models.Model):
   date_uploaded       = models.DateTimeField(auto_now=True)
   csv_file            = models.FileField(upload_to='students/bulkupload/')
 
+
+
+class Batch(models.Model):
+  batch_no = models.CharField(max_length=10)
+  dept     = models.ForeignKey(Department, on_delete=models.SET_NULL, blank=True, null=True)
+  year     = models.ForeignKey(Year, on_delete=models.SET_NULL, blank=True, null=True)
+  student   = models.ManyToManyField(Student)
+
+  def __str__(self):
+    return f'{self.batch_no}{self.dept}'

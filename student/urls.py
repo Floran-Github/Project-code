@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import StudentListView, StudentDeleteView, StudentDetailView, StudentUpdateView, StudentCreateView, StudentBulkUploadView,downloadcsv
+from .views import *
 
 urlpatterns = [
   path('list', StudentListView.as_view(), name='student-list'),
@@ -11,5 +11,11 @@ urlpatterns = [
 
   path('upload/', StudentBulkUploadView.as_view(), name='student-upload'),
   path('downloadcsv/', downloadcsv, name='download-csv'),
+
+  path('batch', BatchListView.as_view(), name='batch'),
+  path('batch/create/', BatchCreate, name='batch-create'),
+  path('batch/<int:pk>/', BatchStudentListView.as_view(), name='batch-student-list'),
+  path('batch/delete/<int:pk>/', BatchDeleteView.as_view(), name='batch-delete'),
+
 
 ]

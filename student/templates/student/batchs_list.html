@@ -1,0 +1,93 @@
+{% extends 'home.html' %}
+{% load widget_tweaks %}
+
+
+{% block title %}
+Batch
+{% endblock title %}
+
+
+{% block breadcrumb %}
+  <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#modal1">
+    <i class="fa fa-plus"></i>
+    Add new Batch
+  </a>
+{% endblock breadcrumb %}
+  
+
+{% block content %}
+  <div class="row">
+    <div class="col-sm-12">
+
+      {% for i in years_name %}
+      <b><h1 style="line-height: 1.7; font-weight: 20; font-size: 40px;">{{i}} year<br></h1></b>
+      {% for year in years %}
+      
+      {% if year.name == i %}
+        <table class="table table-bordered">
+          <tbody>
+              {% for dept in depts %}
+                {% if year.dept == dept %}
+                <h4>{{dept}}<br></h4>
+                  {% for object in object_list %}
+                    {% if object.dept == dept and object.year == year %}
+
+                    <tr class='clickable-row' data-href="{% url 'batch-student-list' object.id %}">
+                      <td><h5>{{ object }}</h5></td>
+
+                      <td><a href="{% url 'batch-delete' object.id %}"><i
+                            class="fa fa-trash-alt"></i></a></td>
+
+                    </tr>
+                    {% endif %}
+                  {% endfor %}
+                  
+          </tbody>
+          
+          {% endif %}
+              {% endfor %}
+        </table>
+        <br>
+        <hr style="
+   border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+">
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="{% url 'batch-create' %}" method="POST">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add new batch</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              {% csrf_token %}
+
+              
+                  <div class="form-group">
+                    {{ form.as_p }}
+                  </div>
+              
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}
+

@@ -157,7 +157,8 @@
                         </a>
                     </li>
                     {% endif %}
-                    {% if request.user.is_staff == False %}
+
+                    {% if request.user.is_staff == false %}
                     <li class="nav-item">
                       <a href="{% url 'submission-list' %}" class="nav-link">
                           <i class="nav-icon fas fa-bars"></i>
@@ -167,6 +168,7 @@
                       </a>
                   </li>
                   {% endif %}
+
                     {% if request.user.is_superuser %}
                     <li class="nav-item">
                         <a href="{% url 'Department' %}" class="nav-link">
@@ -181,6 +183,14 @@
                             <i class="nav-icon fas fa-bars"></i>
                             <p>
                               Year
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'batch' %}" class="nav-link">
+                            <i class="nav-icon fas fa-bars"></i>
+                            <p>
+                              Batch
                             </p>
                         </a>
                     </li>

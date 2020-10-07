@@ -1,0 +1,59 @@
+{% extends 'home.html' %}
+
+{% block title %}
+{% for i in form %}
+  {{i.batch_no}}
+{% endfor %}
+{% endblock title %}
+
+{% block breadcrumb %}
+<!-- <a class="btn btn-primary" href="{% url 'student-create' %}"><i
+    class="fas fa-plus"></i> New student</a>
+<a class="btn btn-primary" href="{% url 'student-upload' %}"><i
+    class="fas fa-upload"></i> Upload students</a> -->
+
+{% endblock breadcrumb %}
+
+{% block content %}
+{% for i in form %}
+  <div class="table-responsive">
+
+    <table id="studenttable" class="table table-bordered table-hover" data-page-length='100'>
+      <thead class="thead-light">
+        <tr>
+          <th>S/N</th>
+          <th>Roll Number</th>
+          <th>Last Name</th>
+          <th>First Name</th>
+
+        </tr>
+      </thead>
+      <tbody>
+
+        
+        {% for j in i.student.all %}
+          <tr class='clickable-row' data-href="{% url 'student-detail' i.id %}">
+            <td>{{ forloop.counter}}</td>
+            <td>{{ j.Roll_number }}  </td>
+            <td>{{ j.surname }}  </td>
+            <td>{{ j.firstname }}  </td>
+            
+          </tr>
+        {% endfor %}
+       
+        
+
+      </tbody>
+    </table>
+  </div>
+  {% endfor %}
+{% endblock content %}
+
+
+{% block morejs %}
+<script>
+  $('#studenttable').DataTable({
+  });
+</script>
+
+{% endblock morejs %}
