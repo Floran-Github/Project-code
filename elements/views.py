@@ -171,23 +171,29 @@ class SubimittedListView(ListView):
     template_name = 'elements\submited_list.html'
 
     def get_queryset(self):
-        username = self.request.user.username
-        username = username.split(".")
+        if self.request.user.is_superuser:
+            self.teacher_subject = Subject.objects.all()
+            self.submit = Elements.objects.filter(subject__in=self.teacher_subject)
 
-        self.teacher = Staff.objects.filter(firstname = username[0]).values()[0]['id']
-        self.teacher_subject = Subject.objects.filter(teacher_id = self.teacher)
+            pass
+        else:
+            username = self.request.user.username
+            username = username.split(".")
 
-        print(self.teacher_subject)
+            self.teacher = Staff.objects.filter(firstname = username[0]).values()[0]['id']
+            self.teacher_subject = Subject.objects.filter(teacher_id = self.teacher)
 
-        self.submit = Elements.objects.filter(subject__in=self.teacher_subject)
+            print(self.teacher_subject)
 
-        print(self.submit)
-        print(Submissions.objects.filter(assignment__in = self.submit))
-        self.a =[]
-        for i in self.submit:
-            self.a.append(i.subject)
+            self.submit = Elements.objects.filter(subject__in=self.teacher_subject)
 
-        print(self.a)
+            print(self.submit)
+            print(Submissions.objects.filter(assignment__in = self.submit))
+            self.a =[]
+            for i in self.submit:
+                self.a.append(i.subject)
+
+            print(self.a)
     
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(SubimittedListView , self).get_context_data(**kwargs)
@@ -205,3 +211,4 @@ class GradeView(SuccessMessageMixin, UpdateView):
     success_message = "Record successfully updated."
     template_name = 'elements\grade.html'
     success_url = reverse_lazy('submit-list')
+

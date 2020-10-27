@@ -158,7 +158,7 @@
                     </li>
                     {% endif %}
 
-                    {% if request.user.is_staff == false %}
+                    {% if not request.user.is_staff %}
                     <li class="nav-item">
                       <a href="{% url 'submission-list' %}" class="nav-link">
                           <i class="nav-icon fas fa-bars"></i>
@@ -166,8 +166,9 @@
                           Submissions
                           </p>
                       </a>
-                  </li>
-                  {% endif %}
+                   </li>
+                   {% endif %}
+
 
                     {% if request.user.is_superuser %}
                     <li class="nav-item">
