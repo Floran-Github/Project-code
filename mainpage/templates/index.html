@@ -1,12 +1,109 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="home">
-    <div class="row ">
-        <div class="col-12 " style= "text-align: center; padding-top: 38vh; ">
-            <h1 class="dark">FLORAN </h1>
-            <h1 class="light">  CLASSROOM</h1>
-        </div>
-    </div>
+<section>
+    <slider class="banner">
+        <slide><p><h2>FLORAN <br>CLASSROOM</h2></p></slide>
+        <slide><p><h2>FLORAN <br>CLASSROOM</h2></p></slide>
+        <slide><p><h2>FLORAN <br>CLASSROOM</h2></p></slide>
+        <slide><p><h2>FLORAN <br>CLASSROOM</h2></p></slide>
+        <slide><p><h2>FLORAN <br>CLASSROOM</h2></p></slide>
+
+    </slider>
+</section>
+<div class="container1">
+    <h2>Floran Classroom</h2>
+    <p>Floran is website that manage from staff level work to teacher and student level work. This website doesn't support the user 
+        registration system and all the user registeration is handled by the superuser(admin) to create all the staff and student
+         dynamaically from the database that store the student and staff identity
+    </p>
+    <p>
+        This website takes everyday attendance along with the student assestment and after each sem or year duration. 
+        You can manually give the command to create the report of each student
+    </p>
 </div>
+
+<div class="about-us">
+    <h2>
+        About us
+    </h2>
+    <br>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="card__collection clear-fix">
+          
+            <div class="cards cards--two">
+              <img src="{% static 'pic/zaki2.jpeg' %}" class="img-responsive zaki" alt="Cards Image">
+              <span class="cards--two__rect"></span>
+              <span class="cards--two__tri"></span>
+              <p>Khan Zaki Ur Rahman <br>Farid</p>
+              Team Leader
+              Full Stack dev
+              <!-- <ul class="cards__list">
+                <li><i class="fab fa-facebook-f"></i></li>
+                <li><i class="fab fa-twitter"></i></li>
+                <li><i class="fab fa-instagram"></i></li>
+                <li><i class="fab fa-linkedin-in"></i></li>
+              </ul> -->
+            </div>
+            <div class="cards cards--three">
+              <!-- <img src="https://images.unsplash.com/photo-1480408144303-d874c5e12201?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=575213599ae24b3dbdfd84be79425c50&auto=format&fit=crop&w=634&q=80" class="img-responsive" alt=""> -->
+              <img src="{% static 'pic/farhan.jpeg' %}" class="img-responsive zaki" alt="Cards Image">
+              <span class="cards--three__rect-1">
+                <span class="shadow-1"></span>
+                <p>Khan Farhan Nadeem</p>
+                Team Member
+                Backend dev
+              </span>
+              <span class="cards--three__rect-2">
+                <span class="shadow-2"></span>
+              </span>
+              <span class="cards--three__circle"></span>
+              <!-- <ul class="cards--three__list">
+                <li><i class="fab fa-facebook-f"></i></li>
+                <li><i class="fab fa-twitter"></i></li>
+                <li><i class="fab fa-linkedin-in"></i></li>
+              </ul> -->
+            </div>
+            <div class="cards cards--one">
+              <img src="{% static 'pic/sarim.jpeg' %}" class="img-responsive zaki" alt="Cards Image">
+              <span class="cards--one__rect"></span>
+              <span class="cards--one__rect--back"></span>
+              <p><br>Ansari Sarim Ajaz Akhtar</p>
+              <!-- <ul class="cards__list">
+                <li><i class="fab fa-facebook-f"></i></li>
+                <li><i class="fab fa-twitter"></i></li>
+                <li><i class="fab fa-instagram"></i></li>
+                <li><i class="fab fa-linkedin-in"></i></li>
+              </ul> -->
+            </div>
+          </div>
+      </div>
+      <p class="about-us-para">
+        <h5>
+          <b>Floran</b> is a team of <b>smart</b> , <b>creatives</b>, <b>sharp programmer</b> and <b>desginers</b> working together to create amazing and feasible platform
+        </h5>
+        <br>
+        <br>
+        <h5>
+          Our roots in search, diverse backgrounds and deep experience combine to give you all the skills it takes to create and rank content under one roof.
+        </h5>
+      </p>
+    </div>
+    <footer class="page-footer fixed-bottom font-small special-color-dark">
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2020 Copyright:Floran
+        <!-- <a href="https://mdbootstrap.com/"> Floran</a> -->
+      </div>
+      <!-- Copyright -->
+
+    </footer>
+    
+    
+      
+
+  </div>
 {% endblock content %}

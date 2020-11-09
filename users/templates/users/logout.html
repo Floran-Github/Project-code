@@ -1,11 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>YOU HAVE BEEN LOGOUT</h2> 
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            <a  href="{% url 'login' %}">Log in again</a>
-        </small>
+<style>
+    form{
+        color: #fff;
+    }
+    .row{
+        padding-top: 200px!important;
+        color: #fff;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class=" col-sm-12 col-md-5 col-md-offset-6 ">
+            <div class="content-section">
+            <h2>YOU HAVE BEEN LOGOUT</h2> 
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    <a class="btn btn-dark" href="{% url 'login' %}">Log in again</a>
+                </small>
+            </div>
+        </div>
     </div>
-    
+</div>
+</div>
 {% endblock content %}

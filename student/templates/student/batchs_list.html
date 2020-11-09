@@ -33,7 +33,7 @@ Batch
                     {% if object.dept == dept and object.year == year %}
 
                     <tr class='clickable-row' data-href="{% url 'batch-student-list' object.id %}">
-                      <td><h5>{{ object }}</h5></td>
+                      <td><h6>{{ object }}</h6></td>
 
                       <td><a href="{% url 'batch-delete' object.id %}"><i
                             class="fa fa-trash-alt"></i></a></td>
