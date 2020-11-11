@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['floran.herokuapp.com','127.0.0.1']
 
 INSTALLED_APPS = [
     'mainpage.apps.MainpageConfig',
+    'attendance.apps.AttendanceConfig',
     'student.apps.StudentConfig',
     'management.apps.ManagementConfig',
     'staffs.apps.StaffsConfig',

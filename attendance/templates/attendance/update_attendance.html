@@ -1,0 +1,33 @@
+{% extends 'home.html' %}
+<!-- {% load widget_tweaks %} -->
+
+{% block title %}
+  {{title}}
+{% endblock title %}
+
+
+
+{% block title-side %}{% endblock title-side %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12">
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+          <div class="form-group">
+            {{ form.as_p }}
+          </div>
+        </div>
+
+
+        <input type="submit" value="Save" class="w-25 btn btn-primary">
+
+      </form>
+    </div>
+  </div>
+
+{% endblock content %}
+
+
