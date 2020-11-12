@@ -1,0 +1,107 @@
+{% extends 'home.html' %}
+<!-- {% load widget_tweaks %} -->
+
+{% block title %}
+  Dashboard
+{% endblock title %}
+
+
+
+{% block title-side %}{% endblock title-side %}
+
+{% block content %}
+<!-- <style>
+    canvas{
+        height: 100px;
+    }
+</style> -->
+<div class="container">
+    {% if request.user.is_staff%}
+        <div class="row">
+            {% for i in number %}
+                <div class="col-12">
+                        <h3 id="subject_name{{forloop.counter}}"></h1>
+                        <canvas id="myChart{{forloop.counter}}" width="200" height="50"></canvas><br>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if not request.user.is_staff %}
+        <div class="row">
+            {% for i in number %}
+                <div class="col-6">
+                        <canvas id="myChart{{forloop.counter}}" width="200" height="100"></canvas><br>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+  
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script>
+    
+    var is_staff = {{ request.user.is_staff|yesno:"true,false" }}
+
+    
+    if(is_staff == true){
+        console.log('staff entered');
+        a = {{ a|safe }}
+        label_data = {{ label|safe }}
+        data_data = {{ data|safe }}
+        subject = {{ subject|safe }}
+        for (i =1;i<=a;i++){
+            console.log(subject[i-1]);
+            document.getElementById("subject_name"+i).innerHTML = subject[i-1];
+            var ctx = document.getElementById('myChart'+i).getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: label_data[i-1],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: data_data[i-1],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        xAxes: [{
+                                    maxBarThickness: 100,
+                                }],
+                    }
+                }
+            });
+        }
+    }   
+    
+    
+    </script>
+{% endblock content %}
