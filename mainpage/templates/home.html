@@ -135,6 +135,14 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                      <a href="{% url 'result' %}" class="nav-link">
+                          <i class="nav-icon fas fa-book-open"></i>
+                          <p>
+                          Generate Result
+                          </p>
+                      </a>
+                    </li>
                     {% endif %}
 
                     {% if request.user.is_staff %}

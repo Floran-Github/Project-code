@@ -46,7 +46,8 @@ h2{
 .about-us{
     position: relative;
     /* margin-top: 200vh; */
-    padding: 100px;
+    padding-bottom: 36px;
+    padding-right: 36px;
     color: #1f1f1f;
     background: #fff;
 }
@@ -90,22 +91,36 @@ slide:nth-child(2){
 }
 slide:nth-child(3){
   
-    animation-delay: 5s;
+    animation-delay: 4s;
     background-image: url("./images/class3.jpg");
     background-size: cover;
     background-position: center;
 }
 slide:nth-child(4){
     
-    animation-delay: 8s;
+    animation-delay: 6s;
     background-image: url("./images/class4.jpg");
     background-size: cover;
     background-position: center;
 }
 slide:nth-child(5){
     
-    animation-delay: 12s;
+    animation-delay: 8s;
     background-image: url("./images/class5.jpg");
+    background-size: cover;
+    background-position: center;
+}
+slide:nth-child(6){
+    
+    animation-delay: 10s;
+    background-image: url("./images/class6.jpg");
+    background-size: cover;
+    background-position: center;
+}
+slide:nth-child(7){
+    
+    animation-delay: 12s;
+    background-image: url("./images/class7.jpg");
     background-size: cover;
     background-position: center;
 }

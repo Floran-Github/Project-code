@@ -15,10 +15,10 @@
 }
  .img-responsive {
 	 max-width: 100%;
-	 height: auto;
+	 height: 500px;
 }
 .zaki{
-    max-width: 100%;
+    max-width: 500px;
     height: 400px;
 }
  .card__collection {
@@ -409,3 +409,11 @@
 	 transition-delay: 0.4s;
 }
  
+@media (max-width: 650px)
+{
+   .zaki{
+	max-width: 200%;
+	/* height: 400px; */
+
+}
+}

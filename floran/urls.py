@@ -31,6 +31,7 @@ urlpatterns = [
     path('staff/', include('staffs.urls')),
     path('element/', include('elements.urls')),
     path('attendace/', include('attendance.urls')),
+    path('result/', include('result.urls')),
     
     path('profile/',user_views.profile, name='profile'),
     path('login/',auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),

@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'mainpage.apps.MainpageConfig',
     'attendance.apps.AttendanceConfig',
     'student.apps.StudentConfig',
+    'result.apps.ResultConfig',
     'management.apps.ManagementConfig',
     'staffs.apps.StaffsConfig',
     'users.apps.UsersConfig',
