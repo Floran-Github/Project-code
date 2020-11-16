@@ -188,8 +188,14 @@ def createresult(request):
                 row_data = []
                 row_data.append(submited_student[k])
                 for j in range(len(total_att)):
-                    row_data.append((all_att[k][j]/total_att[k])*100)
-                row_data.append((sum(all_att[k])/sum(total_att))*100)
+                    try:
+                        row_data.append((all_att[k][j]/total_att[k])*100)
+                    except:
+                        row_data.append(0)
+                try:
+                    row_data.append((sum(all_att[k])/sum(total_att))*100)
+                except:
+                    row_data.append(0)
                 row_data.append(sum(all_att[k]))
                 row_data.append(sum(total_att))
 

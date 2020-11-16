@@ -1,14 +1,9 @@
 from django.shortcuts import render
+from django.views.defaults import page_not_found
 from elements.models import *   ### change it to element
 from student.models import *
 from attendance.models import *
 # Create your views here.
-
-#### Page before login
-def mainpage(request):
-    return render(request,'index.html')
-
-
 ##dashboard
 def homepage(request):
     return render(request,'home.html')

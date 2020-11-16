@@ -20,7 +20,6 @@ from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from users import views as user_views
 from django.conf.urls.static import static
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('mainpage.urls')),
@@ -43,5 +42,3 @@ urlpatterns = [
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
-# www.google.com
-#
