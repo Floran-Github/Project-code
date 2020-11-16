@@ -6,19 +6,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-
 from .models import *
 from .forms import *
-
-
-
 from django.shortcuts import render
 
-# Create your views here.
 @login_required
 def index_view(request):
   return render(request, 'home.html')
-############### DEPARTMENT ################################
+
+##################################
+########## DEPARTMENT ############
+##################################
 
 class DeptListView(LoginRequiredMixin, SuccessMessageMixin, ListView):
   model = Department
@@ -29,15 +27,11 @@ class DeptListView(LoginRequiredMixin, SuccessMessageMixin, ListView):
       context['form'] = DepartmentForm()
       return context
 
-
-
 class DeptCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
   form_class = DepartmentForm
   template_name = 'management/mgt_form.html'
   success_url = reverse_lazy('Department')
   success_message = 'New class successfully added'
-
-
 
 class DeptUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
   model = Department
@@ -46,14 +40,11 @@ class DeptUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
   success_message = 'class successfully updated.'
   template_name = 'management/mgt_form.html'
 
-
-
 class DeptDeleteView(LoginRequiredMixin, DeleteView):
   model = Department
   success_url = reverse_lazy('Department')
   template_name = 'management/core_confirm_delete.html'
   success_message = "The class {} has been deleted with all its attached content"
-
 
   def delete(self, request, *args, **kwargs):
       obj = self.get_object()
@@ -61,7 +52,9 @@ class DeptDeleteView(LoginRequiredMixin, DeleteView):
       messages.success(self.request, self.success_message.format(obj.name))
       return super(DeptDeleteView, self).delete(request, *args, **kwargs)
 
-############### YEAR ##################################
+##################################
+############# Year ###############
+##################################
 
 class YearListView(LoginRequiredMixin, SuccessMessageMixin, ListView):
   model = Year
@@ -72,15 +65,11 @@ class YearListView(LoginRequiredMixin, SuccessMessageMixin, ListView):
       context['form'] = YearForm()
       return context
 
-
-
 class YearCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
   form_class = YearForm
   template_name = 'management/year.html'
   success_url = reverse_lazy('Year')
   success_message = 'New class successfully added'
-
-
 
 class YearUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
   model = Year
@@ -89,14 +78,11 @@ class YearUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
   success_message = 'class successfully updated.'
   template_name = 'management/year.html'
 
-
-
 class YearDeleteView(LoginRequiredMixin, DeleteView):
   model = Year
   success_url = reverse_lazy('Year')
   template_name = 'management/core_confirm_delete.html'
   success_message = "The class {} has been deleted with all its attached content"
-
 
   def delete(self, request, *args, **kwargs):
       obj = self.get_object()
@@ -104,8 +90,9 @@ class YearDeleteView(LoginRequiredMixin, DeleteView):
       messages.success(self.request, self.success_message.format(obj.name))
       return super(YearDeleteView, self).delete(request, *args, **kwargs)
 
-#subject
-
+##################################
+############ Subject #############
+##################################
 
 class SubjectListView(LoginRequiredMixin, SuccessMessageMixin, ListView):
   model = Subject
@@ -116,15 +103,11 @@ class SubjectListView(LoginRequiredMixin, SuccessMessageMixin, ListView):
       context['form'] = SubjectForm()
       return context
 
-
-
 class SubjectCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
   form_class = SubjectForm
   template_name = 'management/mgt_form.html'
   success_url = reverse_lazy('subjects')
   success_message = 'New subject successfully added'
-
-
 
 class SubjectUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
   model = Subject
@@ -132,8 +115,6 @@ class SubjectUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
   success_url = reverse_lazy('subjects')
   success_message = 'Subject successfully updated.'
   template_name = 'management/mgt_form.html'
-
-
 
 class SubjectDeleteView(LoginRequiredMixin, DeleteView):
   model = Subject
