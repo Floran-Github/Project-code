@@ -81,7 +81,6 @@ def createresult(request):
             ####################################################################
 
             for i,j in enumerate(student):
-                print(j.id)
                 request_roll_year = Student.objects.filter(id=j.id).values()[0]['current_year_id']
                 request_roll = Student.objects.filter(id=j.id).values()[0]['Roll_number']
                 year = Year.objects.filter(id=request_roll_year)
@@ -108,26 +107,11 @@ def createresult(request):
                 except Exception as e:
                     print(e)
                     print('code crahed')
-                    # print()
                     pass
-
-
-            ###############################
-            ####### finial print ##########
-            ###############################
-
-            print('subjects ',all_subject)
-            print('studnet ', submited_student)
-            print('student marks ', all_marks)
-            print('total marks of each subject ',assignment_marks)
-            print('student attendance ',all_att)
-            print('total attendance of each subject ',total_att)
-            
-            
+                       
             ###################################################
             ############### Writing in csv files ##############
             ###################################################
-
 
 
             #######################################################
@@ -136,7 +120,6 @@ def createresult(request):
 
             response = HttpResponse(content_type='text/csv')
             filename = '{}.csv'.format(year_name)
-            print(filename)  
             response['Content-Disposition'] = 'attachment; filename={}'.format(filename)  
             writer = csv.writer(response)  
 
@@ -145,11 +128,9 @@ def createresult(request):
             header = ['Roll Number']
             for i in all_subject:
                 header.append(i)
-                # header.append('Out off')
             header.append('Total Marks')
             header.append('Out off Marks')
 
-            print(header)
             writer.writerow(header)  
 
             for i in range(len(submited_student)):
@@ -162,7 +143,6 @@ def createresult(request):
                 row_data.append(total_marks) 
                 row_data.append(sum(assignment_marks))   
 
-                print(row_data)
                 writer.writerow(row_data)  
             
             writer.writerow([''])
@@ -201,20 +181,3 @@ def createresult(request):
 
                 writer.writerow(row_data)
             return response  
-
-def test(all_subject,submited_student,all_marks,assignment_marks,all_att,total_att,year_name):
-    header = ['Roll Number']
-    for i in all_subject:
-        header.append(i)
-        # header.append('Out off')
-    print(header)
-
-    for i in range(len(submited_student)):
-        row_data = []
-
-        row_data.append(submited_student[i])
-        for j in range(len(all_subject)):
-            row_data.append(all_marks[i][j])
-
-        
-    print('in second funtion')
