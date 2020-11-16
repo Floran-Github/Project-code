@@ -4,6 +4,13 @@ from elements.models import *   ### change it to element
 from student.models import *
 from attendance.models import *
 # Create your views here.
+
+
+
+def mainpage(request):
+    return render(request,'index.html')
+
+
 ##dashboard
 def homepage(request):
     return render(request,'home.html')
@@ -141,3 +148,5 @@ def dashboard(request):
         }
 
         return render(request,'dashboard.html',context=context)
+
+
