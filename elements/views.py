@@ -15,16 +15,16 @@ from student.models import *
 from management.models import *
 from django.db.models import Q
 
+####################################
+######## Elements Section ##########
+####################################
 
 class ElementListView(ListView):
     model = Elements
     
-
-
 class ElementDetailView(DetailView):
     model = Elements
     template_name = "elements/element_detail.html"
-
 
 class ElementCreateView(SuccessMessageMixin, CreateView):
     model = Elements
@@ -38,7 +38,6 @@ class ElementCreateView(SuccessMessageMixin, CreateView):
             attrs={'type': 'date'})
     
         return form
-
 
 class ElementUpdateView(SuccessMessageMixin, UpdateView):
     model = Elements
@@ -57,8 +56,10 @@ class ElementDeleteView(DeleteView):
   model = Elements
   success_url = reverse_lazy('element-list')
 
+####################################
+########## Student part ############
+####################################
 
-################################### STUDENT PART #######################################
 class SubmissionListView(ListView):
     # model = Elements
     template_name = 'elements\submission_list.html'
@@ -82,23 +83,13 @@ class SubmissionListView(ListView):
             self.element2 = Elements.objects.exclude(Q(submissions__isnull=False))             
             for i in self.element2:
                 self.pending_subject.append(i.subject)
-           
-            print(set(self.submitted_subject))
-            print(set(self.pending_subject))
-            print(self.submitted)
-            print(self.element)
-
 
         else:
             self.student_year = Student.objects.filter(Roll_number=self.request.user.username).values()[0]['current_year_id']
             self.year = Year.objects.filter(pk=self.student_year)
             
-            
-            print(len(self.year))
             for i in self.year:
                 self.a = i.subjects.all()
-
-            print(self.a)
             
             self.submissions = Submissions.objects.filter(user=self.request.user)
             self.element = Elements.objects.filter(subject__in=self.a)
@@ -114,11 +105,6 @@ class SubmissionListView(ListView):
             self.element2 = Elements.objects.filter(subject__in=self.a).exclude(Q(submissions__isnull=False))             
             for i in self.element2:
                 self.pending_subject.append(i.subject)
-           
-            print(set(self.submitted_subject))
-            print(set(self.pending_subject))
-            print(self.submitted)
-            print(self.element)
 
     def get_context_data(self, **kwargs):
         context = super(SubmissionListView, self).get_context_data(**kwargs)
@@ -129,8 +115,6 @@ class SubmissionListView(ListView):
         context['ped'] = self.element2
        
         return context
-
-
 
 class SubmissionCreateView(SuccessMessageMixin,CreateView):
     model = Submissions
@@ -151,20 +135,20 @@ class SubmissionUpdateView(SuccessMessageMixin, UpdateView):
     success_message = 'You have updated assignment'
     template_name = 'elements\submission_form.html'
     
-
     def form_valid(self, form):
         form.instance.assignment = Elements.objects.get(pk=self.kwargs['pk'])
         form.instance.user = self.request.user
         form.instance.submission_status = 'submitted'
         return super(SubmissionCreateView, self).form_valid(form)
 
-
 class SubmissionDetailView(DetailView):
     model = Elements
     template_name = "elements/submission_detail.html"  
 
 
-############################ TEACHER PART ##############################################
+####################################### 
+########## TEACHER PART ############### 
+#######################################
 
 class SubimittedListView(ListView):
     # model = Submissions
@@ -183,17 +167,11 @@ class SubimittedListView(ListView):
             self.teacher = Staff.objects.filter(firstname = username[0]).values()[0]['id']
             self.teacher_subject = Subject.objects.filter(teacher_id = self.teacher)
 
-            print(self.teacher_subject)
-
             self.submit = Elements.objects.filter(subject__in=self.teacher_subject)
 
-            print(self.submit)
-            print(Submissions.objects.filter(assignment__in = self.submit))
             self.a =[]
             for i in self.submit:
                 self.a.append(i.subject)
-
-            print(self.a)
     
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(SubimittedListView , self).get_context_data(**kwargs)
@@ -204,11 +182,9 @@ class SubimittedListView(ListView):
 
         return context
 
-
 class GradeView(SuccessMessageMixin, UpdateView):
     model = Submissions
     fields = {'grade'}
     success_message = "Record successfully updated."
     template_name = 'elements\grade.html'
     success_url = reverse_lazy('submit-list')
-
