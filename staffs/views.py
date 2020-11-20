@@ -4,18 +4,18 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.forms import widgets
 from django.urls import reverse_lazy
-
 from .models import Staff,Head
 
+####################################
+############ StaffPart #############
+####################################
 
 class StaffListView(ListView):
     model = Staff
 
-
 class StaffDetailView(DetailView):
     model = Staff
     template_name = "staffs/staff_detail.html"
-
 
 class StaffCreateView(SuccessMessageMixin, CreateView):
     model = Staff
@@ -32,7 +32,6 @@ class StaffCreateView(SuccessMessageMixin, CreateView):
         form.fields['address'].widget = widgets.Textarea(attrs={'rows': 1})
         
         return form
-
 
 class StaffUpdateView(SuccessMessageMixin, UpdateView):
     model = Staff
@@ -53,18 +52,17 @@ class StaffUpdateView(SuccessMessageMixin, UpdateView):
 class StaffDeleteView(DeleteView):
   model = Staff
   success_url = reverse_lazy('staff-list')
-
-##################### head  #########################
-
+    
+####################################
+##### Head of Department Part ######
+####################################
 
 class HeadListView(ListView):
     model = Head
 
-
 class HeadDetailView(DetailView):
     model = Head
     template_name = "staffs/head_detail.html"
-
 
 class HeadCreateView(SuccessMessageMixin, CreateView):
     model = Head
@@ -80,7 +78,6 @@ class HeadCreateView(SuccessMessageMixin, CreateView):
                                                                     'type': 'date'})
         
         return form
-
 
 class HeadUpdateView(SuccessMessageMixin, UpdateView):
     model = Head

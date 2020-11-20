@@ -1,6 +1,4 @@
 from django.shortcuts import render
-
-# Create your views here.
 import csv
 from django.http import HttpResponse
 from django.shortcuts import *
@@ -12,19 +10,14 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.forms import widgets
 from django.urls import reverse_lazy
 from django.contrib import messages
-
 from .models import Student, StudentBulkUpload
 from .filters import *
 from .forms import *
 from management.models import  *
 
-# from finance.models import Invoice
-
-# @login_required
-# def student_list(request):
-#   students = Student.objects.all()
-#   return render(request, 'students/student_list.html', {"students":students})
-
+####################################
+########### StudentPart ############
+####################################
 
 class StudentListView(LoginRequiredMixin, ListView):
     model = Student
@@ -35,16 +28,13 @@ class StudentListView(LoginRequiredMixin, ListView):
         context['filter'] = StudentFilter(self.request.GET,queryset = self.get_queryset())
         return context
 
-
 class StudentDetailView(LoginRequiredMixin, DetailView):
     model = Student
     template_name = "student/student_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super(StudentDetailView, self).get_context_data(**kwargs)
-        # context['payments'] = Invoice.objects.filter(student=self.object)
         return context
-
 
 class StudentCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Student
@@ -59,7 +49,6 @@ class StudentCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         form.fields['address'].widget = widgets.Textarea(attrs={'rows': 2})
         
         return form
-
 
 class StudentUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Student
@@ -78,11 +67,9 @@ class StudentUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         form.fields['profile_pic'].widget = widgets.FileInput()
         return form
 
-
 class StudentDeleteView(LoginRequiredMixin, DeleteView):
     model = Student
     success_url = reverse_lazy('student-list')
-
 
 class StudentBulkUploadView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = StudentBulkUpload
@@ -113,12 +100,13 @@ def downloadcsv(request):
 
     return response
 
+####################################
+############ BatchPart #############
+####################################
 
 class BatchListView(LoginRequiredMixin, SuccessMessageMixin, ListView):
   model = Batch
   template_name = 'student/batchs_list.html'
-
-  
 
   def get_context_data(self, **kwargs):
       year_list = Year.objects.all().order_by('name')
@@ -135,28 +123,13 @@ class BatchListView(LoginRequiredMixin, SuccessMessageMixin, ListView):
             sorted_dept_list.append(i.dept)
             sorted_dept_list_name.append(i.dept.name)
 
-
       sorted_year_list = set(sorted_year_list)
       sorted_dept_list = set(sorted_dept_list)
 
-    #   for i in range(0,len(sorted_year_list_name)-2):
-    #     print(i)
-    #     if sorted_year_list_name[i] == sorted_year_list_name[i+1]:
-    #         sorted_year_list_name.remove(sorted_year_list_name[i+1])
-
-    #   a = set(sorted_year_list_name)
       a = set()
       b = [x for x in sorted_year_list_name if not (x in a or a.add(x))]
-      b.sort()
-      print(b)
-    #   print(seen)
-          
+      b.sort()          
       sorted_dept_list_name = set(sorted_dept_list_name)
-
-    #   print(sorted_year_list)
-    #   print(sorted_dept_list)
-    #   print(sorted_year_list_name)
-    #   print(sorted_dept_list_name)
 
       context = super().get_context_data(**kwargs)
       context['form'] = BatchForm()
@@ -180,21 +153,14 @@ def BatchCreate(request):
             no_batch = int(len(student)/a)
             if no_batch >= 1:
                 student_divide = [student[i:i+no_batch] for i in range(0,len(student),no_batch)]
-
                 
                 for i,j in enumerate(student_divide):
-                    print(i)
-                    print(j)
                     try:
                         batch_name = 'Batch - {}'.format(i+1)
-                        # Batch.student.add(*j)
-                        # form.save()
                         batch = Batch(batch_no=batch_name,dept=c,year=b)
                         batch.save()
                         batch_add = Batch.objects.get(batch_no=batch_name,dept=c,year=b)
                         batch_add.student.add(*j)
-
-                        print(batch)
                     except:
                         messages.error(request,'Batch already exists')
                         break
@@ -203,7 +169,6 @@ def BatchCreate(request):
                 
             return redirect('batch')
   
-
 class BatchStudentListView(ListView):
     model = Batch
     template_name = 'student/batch_list.html'
@@ -217,7 +182,6 @@ class BatchStudentListView(ListView):
         context['form'] = Batch.objects.filter(pk=self.kwargs.get('pk'))
 
         return context
-
         
 class BatchDeleteView(LoginRequiredMixin, DeleteView):
     model = Batch

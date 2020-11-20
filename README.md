@@ -8,9 +8,8 @@
   This website takes everyday attendance along with the student assestment and after each sem or year duration. You can manually give the command to create the report of each
   student
  
-
-- <h3>This website is still underdevelopment</h3>
- 
+ This Website is Ready for Production 
+ Url:- http://floran.herokuapp.com/
  
  ## Team Detail
  Project by Group - 1 Team Floran
