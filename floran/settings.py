@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hj+2i9ehkr_u+%do1dgcpt7$m9g+dd8rjnk7ilkbx)^5)dargu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['floran.herokuapp.com','127.0.0.1']
 
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'bootstrapform',
     'django_filters',
+    # 'storages',
     
 ]
 
@@ -90,13 +92,40 @@ WSGI_APPLICATION = 'floran.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'floran',
+#         'USER' : 'postgres',
+#         'PASSWORD' : 'tarveen513',
+#         'HOST' : 'database-1.cwffugahodob.us-east-2.rds.amazonaws.com',
+#         'PORT' : '5432',
+
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Floran-live',
+        'USER' : 'postgres',
+        'PASSWORD' : 'toor',
+        'HOST' : 'localhost',
+        'PORT' : '5432',
+
     }
 }
 
+
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -143,11 +172,32 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_URL = '/static/'
 
+
+
+
+#S3 BUCKETS CONFIG
+
+# AWS_ACCESS_KEY_ID = 'AKIAQBQFRHUYKZTP26GZ'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'floran-bucket'
+# # AWS_S3_HOST = 's3.ap-south-1.amazonaws.com' 
+# # AWS_S3_REGION_NAME="ap-south-1"
+# AWS_S3_HOST = "s3.us-east-2.amazonaws.com" 
+# AWS_S3_REGION_NAME = "us-east-2"
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = '/homepage'
 
 LOGIN_URL = 'login'
+
+# IAM USERNAME floranzaki
