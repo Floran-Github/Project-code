@@ -24,7 +24,7 @@ class ElementListView(ListView):
     
 class ElementDetailView(DetailView):
     model = Elements
-    template_name = "elements\element_detail.html"
+    template_name = "elements/element_detail.html"
 
 class ElementCreateView(SuccessMessageMixin, CreateView):
     model = Elements
@@ -62,7 +62,7 @@ class ElementDeleteView(DeleteView):
 
 class SubmissionListView(ListView):
     # model = Elements
-    template_name = 'elements\submission_list.html'
+    template_name = 'elements/submission_list.html'
 
     def get_queryset(self):
         if self.request.user.is_superuser:
@@ -120,7 +120,7 @@ class SubmissionCreateView(SuccessMessageMixin,CreateView):
     model = Submissions
     fields = {'upload'}
     success_message = 'You have submitted assignment'
-    template_name = 'elements\submission_form.html'
+    template_name = 'elements/submission_form.html'
     
 
     def form_valid(self, form):
@@ -133,7 +133,7 @@ class SubmissionUpdateView(SuccessMessageMixin, UpdateView):
     model = Submissions
     fields = {'upload'}
     success_message = 'You have updated assignment'
-    template_name = 'elements\submission_form.html'
+    template_name = 'elements/submission_form.html'
     
     def form_valid(self, form):
         form.instance.assignment = Elements.objects.get(pk=self.kwargs['pk'])
@@ -143,7 +143,7 @@ class SubmissionUpdateView(SuccessMessageMixin, UpdateView):
 
 class SubmissionDetailView(DetailView):
     model = Submissions
-    template_name = "elements\submission_detail.html"  
+    template_name = "elements/submission_detail.html"  
 
 
 ####################################### 
@@ -152,7 +152,7 @@ class SubmissionDetailView(DetailView):
 
 class SubimittedListView(ListView):
     # model = Submissions
-    template_name = 'elements\submited_list.html'
+    template_name = 'elements/submited_list.html'
 
     def get_queryset(self):
         if self.request.user.is_superuser:
@@ -186,5 +186,5 @@ class GradeView(SuccessMessageMixin, UpdateView):
     model = Submissions
     fields = {'grade'}
     success_message = "Record successfully updated."
-    template_name = 'elements\grade.html'
+    template_name = 'elements/grade.html'
     success_url = reverse_lazy('submit-list')
