@@ -24,7 +24,7 @@ class ElementListView(ListView):
     
 class ElementDetailView(DetailView):
     model = Elements
-    template_name = "elements/element_detail.html"
+    template_name = "elements\element_detail.html"
 
 class ElementCreateView(SuccessMessageMixin, CreateView):
     model = Elements
@@ -143,7 +143,7 @@ class SubmissionUpdateView(SuccessMessageMixin, UpdateView):
 
 class SubmissionDetailView(DetailView):
     model = Submissions
-    template_name = "elements/submission_detail.html"  
+    template_name = "elements\submission_detail.html"  
 
 
 ####################################### 
@@ -152,7 +152,7 @@ class SubmissionDetailView(DetailView):
 
 class SubimittedListView(ListView):
     # model = Submissions
-    template_name = 'elements/submited_list.html'
+    template_name = 'elements\submited_list.html'
 
     def get_queryset(self):
         if self.request.user.is_superuser:
