@@ -46,18 +46,20 @@ def createAttendance(request):
             absent_rollnumber = form.cleaned_data['absent_rollnumber']
             student = Student.objects.filter(current_year_id = year,current_dept_id = dept)
             absent = absent_rollnumber.split(',')
+            att = Attendance(name=name,dept=dept,year=year,subject=subject,teacher=str(request.user.username))
+            att.save()
             for i,j in enumerate(student):
                 try:
                     roll_number = student.values()[i]['Roll_number']
                     if roll_number in absent:
                         pass
                     else:
-                        att = Attendance(name=name,dept=dept,year=year,subject=subject,teacher=str(request.user.username))
-                        att.save()
+                        
                         att_add = Attendance.objects.get(name=name,dept=dept,year=year,subject=subject,teacher=str(request.user.username))
                         att_add.student.add(j)
                 except Exception as e:
                     messages.error(request,'Error Occur During Creating Attendance, Try Again !')
+                    print(e)
                     break
 
         return redirect('attendance')

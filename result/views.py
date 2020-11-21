@@ -51,40 +51,39 @@ def createresult(request):
                         temp2 = []
                         temp3 = []
                         a = 0
-                        all_subject.append(i.name)
+                        if i.name not in all_subject:
+                            all_subject.append(i.name)
                         for j in assignment:
                             if i == j.subject:
                                 try:
                                     a = Submissions.objects.filter(assignment_id=j.id,user_id=user).values()
                                     temp.append(Submissions.objects.filter(assignment_id=j.id,user_id=user).values()[0]['grade'])
-                                    temp2.append(Elements.objects.filter(id= a[0]['assignment_id']).values()[0]['marks'])
                                 except:
                                     temp.append(0)
                                     pass
+                                temp2.append(Elements.objects.filter(id= j.id).values()[0]['marks'])
                         marks.append(sum(temp))
                         assignment_marks.append(sum(temp2))
 
                         attendance = Attendance.objects.filter(subject_id=i.id)
 
                     all_marks.append(marks)
-                except :
+                except Exception as e:
 
                     ###################################################################
                     ######## if by chances the student username is not created ########
                     ###################################################################
                     
-                    print(user,'failed')
-              
-
+                    print(user,'failed ',e )
+                    pass
             ####################################################################
             ################### Attendance filteration #########################
             ####################################################################
-
+            all_att = []
             for i,j in enumerate(student):
                 request_roll_year = Student.objects.filter(id=j.id).values()[0]['current_year_id']
                 request_roll = Student.objects.filter(id=j.id).values()[0]['Roll_number']
                 year = Year.objects.filter(id=request_roll_year)
-                all_att = []
                 total_att = []
                 try:
                     user = User.objects.filter(username=request_roll).values()[0]['id']
@@ -95,6 +94,7 @@ def createresult(request):
                         a = 0
                         b = 0
                         attendance = Attendance.objects.filter(subject_id=k.id)
+                        # print(k.id)
                         for m,n in enumerate(attendance):
                             b += 1
                             for stu in n.student.all():
@@ -104,6 +104,7 @@ def createresult(request):
                         att.append(a)
                         total_att.append(b)
                     all_att.append(att)
+                    print(all_att)
                 except Exception as e:
                     print(e)
                     print('code crahed')

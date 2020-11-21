@@ -142,7 +142,7 @@ class SubmissionUpdateView(SuccessMessageMixin, UpdateView):
         return super(SubmissionCreateView, self).form_valid(form)
 
 class SubmissionDetailView(DetailView):
-    model = Elements
+    model = Submissions
     template_name = "elements/submission_detail.html"  
 
 

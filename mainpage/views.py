@@ -21,7 +21,7 @@ def homepage(request):
 def dashboard(request):
     if request.user.is_superuser:
         subjects = Subject.objects.all()
-        attendance = Attendance.objects.filter(subject__in= subjects)
+        attendance = Attendance.objects.filter(subject__in= subjects).order_by('id')
         number_of_student = []
         subject = []
         subject_name = []
