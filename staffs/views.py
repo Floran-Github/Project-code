@@ -43,7 +43,7 @@ class StaffUpdateView(SuccessMessageMixin, UpdateView):
         form = super(StaffUpdateView, self).get_form()
         form.fields['date_of_birth'].widget = widgets.DateInput(
             attrs={'type': 'date'})
-        form.fields['date_of_admission'].widget = widgets.DateInput(attrs={
+        form.fields['date_of_join'].widget = widgets.DateInput(attrs={
                                                                     'type': 'date'})
         form.fields['address'].widget = widgets.Textarea(attrs={'rows': 1})
         
@@ -87,11 +87,10 @@ class HeadUpdateView(SuccessMessageMixin, UpdateView):
     def get_form(self):
         '''add date picker in forms'''
         form = super(HeadUpdateView, self).get_form()
-        form.fields['date_of_birth'].widget = widgets.DateInput(
+        form.fields['fromDate'].widget = widgets.DateInput(
             attrs={'type': 'date'})
-        form.fields['date_of_admission'].widget = widgets.DateInput(attrs={
+        form.fields['toDate'].widget = widgets.DateInput(attrs={
                                                                     'type': 'date'})
-        form.fields['address'].widget = widgets.Textarea(attrs={'rows': 1})
         
         return form
 
