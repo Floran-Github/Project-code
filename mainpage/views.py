@@ -99,16 +99,18 @@ def dashboard(request):
             for j in assignment:
                 if i == j.subject:
                     try:
-                        a = Submissions.objects.filter(assignment_id=j.id,user_id=2).values()
+                        a = Submissions.objects.filter(assignment_id=j.id,user=request.user).values()
                         temp.append(Submissions.objects.filter(assignment_id=j.id,user=request.user).values()[0]['grade'])
-                        temp2.append(Elements.objects.filter(id= a[0]['assignment_id']).values()[0]['element_name'])                        
-                    except:
-                        pass
+                        temp2.append(Elements.objects.filter(id= a[0]['assignment_id']).values()[0]['element_name'])     
+                        print(temp2)                   
+                    except Exception as e:
+                        print(e)
             marks.append(temp)
             assignment_name.append(temp2)
 
         subject_len = len(subject_name)
-
+        print(marks)
+        print(assignment_name)
         context = {
             'number' : range(subject_len),
             'label'  : assignment_name,
