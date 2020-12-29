@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import csv
+from tablib import Dataset
 from django.http import HttpResponse
 from django.shortcuts import *
 from django.contrib.auth.decorators import login_required
@@ -13,6 +14,7 @@ from django.contrib import messages
 from .models import Student, StudentBulkUpload
 from .filters import *
 from .forms import *
+from .resources import *
 from management.models import  *
 
 ####################################
@@ -81,26 +83,58 @@ class StudentBulkUploadView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
     success_message = 'Successfully uploaded students'
 
 @login_required
+def bulkUpload(request):
+    student_resources = studentResources()
+    dataset = student_resources.export()
+
+    # exporting file here
+    response = HttpResponse(dataset.csv, content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="student.csv"'
+    return response  
+    
+@login_required
 def downloadcsv(request):
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="student_template.csv"'
+    response['Content-Disposition'] = 'attachment; filename="student_data_to_be_import.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Gr_number',
-                    'surname',
-                     'firstname',
+    writer.writerow(['current_status',
+                    'Gr_number',
+                     'surname',
+                     'firstname', 
                      'Roll_number', 
-                     'gender', 
                      'Father_Name',
                      'Mother_Name', 
-                     'address',
+                     'gender',
                      'date_of_birth',
                      'date_of_admission',
                      'current_year',
                      'current_dept',
-                     'parent_mobile_number'])
+                     'mobile_num_regex',
+                     'parent_mobile_number',
+                     'address',
+                     'profile_pic'
+                     ])
 
     return response
+@login_required
+def csv_to_student_database(request):
+    if request.method == 'POST':
+        student_resource = studentResources()
+        dataset = Dataset()
+        new_employees = request.FILES['importData']
+        imported_data = dataset.load(new_employees.read().decode('utf-8'),format='csv')
+        result = student_resource.import_data(dataset, dry_run=True)
+        print('is there error in upload ',result.has_errors())
+
+        print(result)
+        if not result.has_errors():
+            # Import now
+            student_resource.import_data(dataset, dry_run=False)
+            return redirect('student-list')
+
+    return render(request, 'student/import_sims.html')  
+
 
 ####################################
 ############ BatchPart #############

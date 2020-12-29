@@ -11,7 +11,7 @@ class  Department(models.Model):
     class Meta:
         verbose_name = "Department"
         verbose_name_plural = "Departments"
-        ordering = ['name']
+        # ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -23,8 +23,8 @@ class Subject(models.Model):
     Coursecode = models.CharField(max_length=50, null = True)
     teacher = models.ForeignKey(Staff,on_delete=models.SET_NULL, blank=True, null=True)
 
-    class Meta:
-        ordering = ['name']
+    # class Meta:
+    #     ordering = ['name']
         
     def __str__(self):
         return self.name

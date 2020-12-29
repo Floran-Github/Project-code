@@ -45,7 +45,7 @@ def dashboard(request):
             'subject': subject_name,
             'a'      : len(subject),
         }
-        return render(request,'dashboard_staff.html',context=context)
+        return render(request,'dashboard_staff.html',context= context )
         pass
     elif request.user.is_staff and not request.user.is_superuser:
         username = request.user.username

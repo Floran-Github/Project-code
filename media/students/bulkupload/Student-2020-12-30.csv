@@ -1,0 +1,5 @@
+id,current_status,Gr_number,surname,firstname,Roll_number,Father_Name,Mother_Name,gender,date_of_birth,date_of_admission,current_year,current_dept,parent_mobile_number,address,profile_pic
+,regular,1,Khan,zaki,19co32,Farid,tarveen,male,11/21/2020,11/21/2020,1,1,7977884617,somewhere in bhiwandi,
+,regular,2,Khan,Farhan,19co23,Nadeem,Zahira,male,11/21/2020,11/21/2020,1,1,7977884613,somewhere in bhiwandi,
+,regular,3,Khan,Tabrez,19co02,Hasan,Simran,male,11/21/2020,11/21/2020,1,1,7977884617,somewhere in bhiwandi,
+,regular,4,Sayed,Amer,19co13,Tabrez,Apeksha,male,11/21/2020,11/21/2020,1,1,7977884612,somewhere in bhiwandi,

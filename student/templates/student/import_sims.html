@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+
+{% block title %}
+  Upload Bulk Students from file
+{% endblock title %}
+
+
+{% block content %}
+
+  <div class="col alert alert-info">
+    <h4>Instruction</h4>
+    <p>Please <a href="{% url 'download-csv' %}">download the CSV file attached here</a>. Fill in the sheet and upload the same file back to this page. DO NOT EDIT THE FIRST ROW</p>
+  </div>
+    <p>
+        <h3>Points to be noted</h3>
+        <ul>
+            <li>Enter the data only of new student don't add the existing student data</li>
+            <li>Remember to put the id of department not the name you can get the id from department section</li>
+            <li>Remember to put the id of year not the name you can get the id from year section</li>
+        </ul>
+    </p>
+    <h3>Import Data</h3>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="importData">
+    <button class="btn btn-primary" type="submit">Import</button>
+  </form>
+
+
+{% endblock content %}

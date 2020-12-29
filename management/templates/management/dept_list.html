@@ -20,9 +20,17 @@ Department
     <div class="col-sm-12">
 
         <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+          <th>Id</th>
+          <th>Department Name</th>
+          <th></th>
+        </tr>
+      </thead>
           <tbody>
             {% for object in object_list %}
             <tr>
+              <td>{{ object.id }}</td>
               <td>{{ object }}</td>
               <td><a href="{% url 'Department-update' object.id %}"><i
                     class="fa fa-edit"></i></a> <a
