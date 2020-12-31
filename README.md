@@ -7,7 +7,41 @@
   
   This website takes everyday attendance along with the student assestment and after each sem or year duration. You can manually give the command to create the report of each
   student
+  
+ # Note
  
+ In this webssite the student user that will generate will have the username and password same as there Roll Number
+ and the teacher user will be generate in the format of first_name.last_name and the password will be there first_name
+ 
+ # Demo Users
+ 
+ Some demo users id for you to see the main website since user registration is forbidden
+ 
+ <ol>
+  <li>
+    Admin User
+    <ul>
+      <li>Username :- floranadmin </li>
+      <li>Password :- admin </li>
+    </ul>
+  </li>
+  <li>
+    Teacher User
+    <ul>
+      <li>Username :- Tabrez.Khan </li>
+      <li>Password :- Tabrez </li>
+    </ul>
+  </li>
+  <li>
+    Student User
+    <ul>
+      <li>Username :- 19co34 </li>
+      <li>Password :- 19co34 </li>
+    </ul>
+  </li>
+ </ol>
+ 
+ # Webiste Url
  This Website is Ready for Production 
  Url:- http://floran.herokuapp.com/
  

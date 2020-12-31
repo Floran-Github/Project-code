@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hj+2i9ehkr_u+%do1dgcpt7$m9g+dd8rjnk7ilkbx)^5)dargu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['floran.herokuapp.com','127.0.0.1']
 
@@ -41,12 +41,14 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'elements.apps.ElementsConfig',
     'create_users.apps.CreateUsersConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'django_extensions',
     'crispy_forms',
     'widget_tweaks',
