@@ -48,8 +48,6 @@
  ## Team Detail
  Project by Group - 1 Team Floran
  <ol>
-  <li>HOD Tabrez khan  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mentor</li>
   <li>Khan Zaki Ur Rahman &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;     Group Leader &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Full Stack</b></li>
   <li>Khan Farhan Nadeem    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    Group Member &nbsp;&nbsp; <b>Frontend</b></li>
-  <li>Ansari Sarim Ajaz Akhtar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Group Member &nbsp;&nbsp; <b>Mathematical Logic handler</b></li>
 </ol>
