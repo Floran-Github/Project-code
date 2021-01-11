@@ -49,5 +49,5 @@
  Project by Group - 1 Team Floran
  <ol>
   <li>Khan Zaki Ur Rahman &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;     Group Leader &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Full Stack</b></li>
-  <li>Khan Farhan Nadeem    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    Group Member &nbsp;&nbsp; <b>Frontend</b></li>
+  <li>Khan Farhan Nadeem    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    Group Member &nbsp;&nbsp; <b>Frontend Responsive error fixer</b></li>
 </ol>
