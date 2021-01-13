@@ -18,7 +18,7 @@ class Profile(models.Model):
         img = Image.open(self.image)
         if img.height > 300 or img.width > 300:
             img.thumbnail((200, 200))
-            fh = storage.open(self.image.name, "w")
+            fh = storage.open(self.image.name, "wb")
             picture_format = 'png'
             img.save(fh, picture_format)
             fh.close()    
