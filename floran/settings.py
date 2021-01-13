@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import cloudinary_storage
 import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -24,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hj+2i9ehkr_u+%do1dgcpt7$m9g+dd8rjnk7ilkbx)^5)dargu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['floran.herokuapp.com','127.0.0.1']
 
@@ -48,6 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    # 'cloudinary',
     
     'django_extensions',
     'crispy_forms',
@@ -58,7 +61,6 @@ INSTALLED_APPS = [
     # 'storages',
     
 ]
-
 
 
 MIDDLEWARE = [
@@ -162,6 +164,14 @@ USE_TZ = True
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 MEDIA_ROOT =os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dhzbnlmz6',
+    'API_KEY': '226835547132216',
+    'API_SECRET': '6_PeWOQE2EOl3AaTrXMHHbAE11M'
+}
+
 
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

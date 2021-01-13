@@ -1,3 +1,7 @@
+.rounded-circle{
+    height: 300px!important;
+    width: 300px!important;
+}
 html {
     scroll-behavior: smooth;
     color: #fff;

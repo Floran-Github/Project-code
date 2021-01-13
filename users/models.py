@@ -1,43 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.files.storage import default_storage as storage
 from PIL import Image
 from create_users.models import *
-# Create your models here.
-
-
-# Now to create users profile first we need to create the model for it as below
-# In model we will have to data 1. user 2. image
-# we have onetoonefield with user means that this table is linked to the User that is created on that instance (User id django default table) 
-# and image will have imagefield with the default image  as default.img that you have to define in media folder. Note: don't put the img in profile_pic folder
-# now whenever user is created from apps.py file the signal will be generated that is define in signals.py
-# the models.py will store the information but will not generate it automatically
-# to generate it will be define the commands in signals.py file 
-
-# Path that will be followed
-
-# User created from register page                     then it will goto                            in signals.py we have commands to        the data will be store 
-# using UserRegisterForm                        --->  apps.py where we have ready function     --> create the user profile and then   -->   in models.py
-# (edit of default UserCreationForm in forms.py)       that will generate command for signals.py    save the user profile
-
-
-
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg',upload_to='profile_pics')
 
     def __str__(self):
-        return f'{self.user.username} Profile'  # this is to give the data in profile.html file
+        return f'{self.user.username} Profile'  
 
 
     def save(self,*args, **kwargs):
         super().save(*args, **kwargs)
 
-        img = Image.open(self.image.path)
-
+        img = Image.open(self.image)
         if img.height > 300 or img.width > 300:
-            output_size = (300,300)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
-
-
+            img.thumbnail((200, 200))
+            fh = storage.open(self.image.name, "w")
+            picture_format = 'png'
+            img.save(fh, picture_format)
+            fh.close()    

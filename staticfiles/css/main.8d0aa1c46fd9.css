@@ -26,7 +26,7 @@
 }
 .home{
     padding-left: 50px;
-    background-image: url("./images/bricks.jpg");
+    background-image: url("./images/bricks.7baa9cb6f9b1.jpg");
     background-color: black;
     height: 100vh;
     width: 100%;
@@ -87,7 +87,10 @@ h1{
     background-color: #aca9a2;
 
 }
-
+.rounded-circle{
+    height: 300px;
+    width: 300px;
+}
 .content-section {
     background: #ffffff;
     padding: 10px 20px;
