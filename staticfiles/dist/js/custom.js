@@ -3,10 +3,13 @@
 
   // Toggle the side navigation
   $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
+    console.log('yoyo');
     $("body").toggleClass("sidebar-toggled");
     $(".sidebar").toggleClass("toggled");
+    $(".brand-link").toggleClass("toggled");
     if ($(".sidebar").hasClass("toggled")) {
       $('.sidebar .collapse').collapse('hide');
+      $('.brand-link .collapse').collapse('hide');
     };
   });
 
@@ -14,6 +17,7 @@
   $(window).resize(function() {
     if ($(window).width() < 768) {
       $('.sidebar .collapse').collapse('hide');
+      $('.brand-link .collapse').collapse('hide');
     };
   });
 

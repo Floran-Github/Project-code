@@ -11,6 +11,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.forms import widgets
 from django.urls import reverse_lazy
 from django.contrib import messages
+from datetime import datetime
 from .models import Student, StudentBulkUpload
 from .filters import *
 from .forms import *
@@ -124,15 +125,36 @@ def csv_to_student_database(request):
         dataset = Dataset()
         new_employees = request.FILES['importData']
         imported_data = dataset.load(new_employees.read().decode('utf-8'),format='csv')
-        result = student_resource.import_data(dataset, dry_run=True)
-        print('is there error in upload ',result.has_errors())
+        # result = student_resource.import_data(dataset, dry_run=True)
+        # print('is there error in upload ',result.has_errors())
 
-        print(result)
-        if not result.has_errors():
-            # Import now
-            student_resource.import_data(dataset, dry_run=False)
-            return redirect('student-list')
+        # print(result)
+        # if not result.has_errors():
+        #     # Import now
+        #     student_resource.import_data(dataset, dry_run=False)
+        #     return redirect('student-list')
+        print(imported_data)
 
+        data = [
+            Student(current_status=i[0],
+                    Gr_number= i[1],
+                     surname=i[2],
+                     firstname=i[3], 
+                     Roll_number=i[4], 
+                     Father_Name=i[5],
+                     Mother_Name=i[6], 
+                     gender=i[7],
+                     date_of_birth=datetime.strptime(i[8],'%m/%d/%Y').strftime('%Y-%m-%d'),
+                     date_of_admission=datetime.strptime(i[9],'%m/%d/%Y').strftime('%Y-%m-%d'),
+                     current_year= Year.objects.get(pk=1) if i[10] == '' else Year.objects.get(pk = i[10]),
+                     current_dept= Department.objects.get(pk=1) if i[11] == '' else Department.objects.get(pk = i[11]),
+                     parent_mobile_number=i[12],
+                     address=i[13],
+            ) for i in imported_data
+        ]
+        Student.objects.bulk_create(objs=data)
+
+        return redirect('student-list')
     return render(request, 'student/import_sims.html')  
 
 

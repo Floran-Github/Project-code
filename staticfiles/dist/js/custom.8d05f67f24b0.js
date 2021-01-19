@@ -3,7 +3,6 @@
 
   // Toggle the side navigation
   $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
-    console.log('yoyo');
     $("body").toggleClass("sidebar-toggled");
     $(".sidebar").toggleClass("toggled");
     $(".brand-link").toggleClass("toggled");

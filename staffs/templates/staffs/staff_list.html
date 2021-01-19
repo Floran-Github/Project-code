@@ -5,10 +5,14 @@
 {% block breadcrumb %}
 <a class="btn btn-primary" href="{% url 'staff-create' %}"><i
     class="fas fa-plus"></i> New Teacher</a>
+<a class="btn btn-primary" href="{% url 'staff-import' %}"><i class="fas fa-user-plus"></i> Upload Bulk Staff data</a>
+
 {% endblock breadcrumb %}
 
 {% block content %}
 <div class="table-responsive">
+<a class="btn btn-primary" href="{% url 'staff-export' %}">Download the csv file of staff data </a>
+<br><br>
   <table id="stafftable" class="table table-bordered table-hover">
     <thead class="thead-light">
       <tr>
