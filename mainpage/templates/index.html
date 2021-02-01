@@ -1,114 +1,139 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<section>
-    <slider class="banner">
-        <slide><p><h2>FLORAN <br>CLASSROOM</h2></p></slide>
-        <slide><p><h2>FLORAN <br>CLASSROOM</h2></p></slide>
-        <slide><p><h2>FLORAN <br>CLASSROOM</h2></p></slide>
-        <slide><p><h2>FLORAN <br>CLASSROOM</h2></p></slide>
-        <slide><p><h2>FLORAN <br>CLASSROOM</h2></p></slide>
-        <slide><p><h2>FLORAN <br>CLASSROOM</h2></p></slide>
-        <slide><p><h2>FLORAN <br>CLASSROOM</h2></p></slide>
-
-    </slider>
-</section>
-<div class="container1">
-    <h2>Floran Classroom</h2>
-    <p>Floran is website that manage from staff level work to teacher and student level work. This website doesn't support the user 
-        registration system and all the user registeration is handled by the superuser(admin) to create all the staff and student
-         dynamaically from the database that store the student and staff identity
-    </p>
-    <p>
-        This website takes everyday attendance along with the student assestment and after each sem or year duration. 
-        You can manually give the command to create the report of each student
-    </p>
-</div>
-
-<div class="about-us">
-    <h2>
-        &nbsp;&nbsp;&nbsp;&nbsp; About us
-    </h2>
-    <br>
-    
-    <div class="content-wrapper" style="background-color: #fff!important;"> 
-      <div class="content-header">
-        <div class="container-fluid"></div>
-        <div class="row mb-1">
-        <div class="col-2" ></div>
-        <div class="card__collection clear-fix">
+<section id="home">
+  <div class="logo" ><img src="{% static 'pic/Floran-logo-removebg-preview.png' %}"></div>
+  <img src="{% static 'pic/bg1.jpg' %}" class="bg">
+  <div class="content" id="home" data-aos="fade-up">
+      <h2>Floran</h2>
+      <h4>One stop to manage your institution</h4>
           
-            <div class="col-12 col-md-6 col-lg-4 cards cards--two">
-              <img src="{% static 'pic/zaki2.jpeg' %}" class="img-responsive zaki" alt="Cards Image">
-              <span class="cards--two__rect"></span>
-              <span class="cards--two__tri"></span>
-              <p>Khan Zaki Ur Rahman <br>Farid</p>
-              Team Leader
-              Full Stack dev
-              <!-- <ul class="cards__list">
-                <li><i class="fab fa-facebook-f"></i></li>
-                <li><i class="fab fa-twitter"></i></li>
-                <li><i class="fab fa-instagram"></i></li>
-                <li><i class="fab fa-linkedin-in"></i></li>
-              </ul> -->
-            </div>
-            <div class="col-12 col-md-6 col-lg-4 cards cards--three">
-              <!-- <img src="https://images.unsplash.com/photo-1480408144303-d874c5e12201?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=575213599ae24b3dbdfd84be79425c50&auto=format&fit=crop&w=634&q=80" class="img-responsive" alt=""> -->
-              <img src="{% static 'pic/farhan.jpeg' %}" class="img-responsive zaki" alt="Cards Image">
-              <span class="cards--three__rect-1">
-                <span class="shadow-1"></span>
-                <p>Khan Farhan Nadeem</p>
-                Team Member
-                Backend dev
-              </span>
-              <span class="cards--three__rect-2">
-                <span class="shadow-2"></span>
-              </span>
-              <span class="cards--three__circle"></span>
-              <!-- <ul class="cards--three__list">
-                <li><i class="fab fa-facebook-f"></i></li>
-                <li><i class="fab fa-twitter"></i></li>
-                <li><i class="fab fa-linkedin-in"></i></li>
-              </ul> -->
-            </div>
-            <div class="col-12 col-md-6 col-lg-4 cards cards--one">
-              <img src="{% static 'pic/sarim.jpeg' %}" class="img-responsive zaki" alt="Cards Image">
-              <span class="cards--one__rect"></span>
-              <span class="cards--one__rect--back"></span>
-              <p><br>Ansari Sarim Ajaz Akhtar</p>
-              <!-- <ul class="cards__list">
-                <li><i class="fab fa-facebook-f"></i></li>
-                <li><i class="fab fa-twitter"></i></li>
-                <li><i class="fab fa-instagram"></i></li>
-                <li><i class="fab fa-linkedin-in"></i></li>
-              </ul> -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <p class="about-us-para">
-        <h5>
-          <b>Floran</b> is a team of <b>smart</b> , <b>creatives</b>, <b>sharp programmer</b> and <b>desginers</b> working together to create amazing and feasible platform
-        </h5>
-        <br>
-        <br>
-        <h5>
-          Our roots in search, diverse backgrounds and deep experience combine to give you all the skills it takes to create and rank content under one roof.<br><br><br>
-        </h5>
-      </p>
-    </div>
-    <footer class="page-footer fixed-bottom font-small special-color-dark">
-
-      <!-- Copyright -->
-      <div class="footer-copyright text-center py-3">© 2020 Copyright:Floran
-        <!-- <a href="https://mdbootstrap.com/"> Floran</a> -->
-      </div>
-      <!-- Copyright -->
-
-    </footer>
-    
-    
-      
-
+      {% if user.is_authenticated %}
+            <a class="button" href="{% url 'homepage' %}">Home</a>
+            {% else %}
+            <a class="button" href="{% url 'login' %}">Login</a>
+            {% endif %}
   </div>
+  
+</section>
+
+<div class="menutoggle" onclick="tooglemenu();">
+</div>
+<div class="navigation">
+  <ul>
+      <li><input type="button" value="Home" onclick="homefun();" ></li>
+      <li><input type="button" value="About" onclick="aboutme();" ></li>
+      <li><input type="button" value="team" onclick="team();" ></li>
+  </ul>
+
+</div>
+<div class="main">
+  <div class="about-me" id="about-me">
+      <div class="content">
+          <div class="row about-title"  data-aos="fade-up">
+              <h2>Floran Classroom</h2>
+          </div>
+          <div class="about-info row"  data-aos="fade-right">
+              <p>
+                  Floran Classroom is the platform where you can manage all your institiution staff work much more easier than your usual method.
+                  <br>Here all the student and staff registeration are done by the database that admin user will create.
+                  <br>
+                  Floran Classroom is capable for generationg the marksheet and attendance report of one division just by selecting the year and divison of class whose report is to be generate
+              </p>
+          </div>
+          <div class="row">
+              
+              <div class="col-12">
+                  <div class="row skill-title">
+                      <h3 data-aos="fade-up">Features</h3> 
+                  </div>
+                  <div class="col-12 features">
+                      <ul >
+                          <li data-aos="fade-right">Record daily attendance</li>
+                          <li data-aos="fade-right">Publishing assignment by teacher</li>
+                          <li data-aos="fade-right">Submission of assignment by student</li>
+                          <li data-aos="fade-right">Grading</li>
+                          <li data-aos="fade-right">Show student how much marks they obtained in each subject in graphical method and also show them which subnissions are pending</li>
+                          <li data-aos="fade-right">Show Teacher graphical representation of student daily attendance</li>
+                          <li data-aos="fade-right">Generating report</li>
+                          <li data-aos="fade-right">Allow admin user to upload the csv data to database</li>
+                          <li data-aos="fade-right">Generate user of student and teacher automatically from database</li>
+                      </ul>
+                  </div>
+              </div>
+              
+          </div>
+      </div>
+  </div>
+  <div class="team-section" id="team">
+      <div class="row team-title" data-aos="fade-down">
+          <h2>Team</h2>
+      </div>
+      <div class="row team-row">
+          <div class="col-lg-4 " data-aos="fade-right">
+              <img src="{% static 'pic/team/zaki2.jpeg' %}" class="team-pic">
+          </div>
+          <div class="col-lg-6 team-info" data-aos="fade-left">
+              <h4>Khan Zaki Ur Rahman Farid</h4>
+              <h6>Group Leader</h6>
+              <h6>Full Stack Django Web Dev</h6>
+              <p>
+                  Hello there I am Khan Zaki, Leader of Floran and also the Full stack dev of Floran Classroom. 
+                  Currently I am 2nd year computer engg student and my team develop this platform as a part of our project
+                  Hope you liked our work<br>
+                  Until then cheers of peace and code ✌
+              </p>
+              
+              <div class="social-links">
+                  <ul>
+                      <li ><a href="https://github.com/bhagwanZaki" class="github view"><i class="fab fa-github"></i></a></li>
+                      <li ><a href="https://www.linkedin.com/in/zaki-ur-rahman-farid-khan-8740a81b1/" class="linkedin"><i class="fab fa-linkedin"></i></li>
+                      <li ><a href="https://www.instagram.com/zakiurrahmankhan/" class="instgram"><i class="fab fa-instagram"></i></a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="row team-row">
+          <div class="col-lg-4 " data-aos="fade-right">
+              <img src="{% static 'pic/team/farhan.jpeg' %}" class="team-pic">
+          </div>
+          <div class="col-lg-6 team-info" data-aos="fade-left">
+              <h4>Khan Farhan Nadeem</h4>
+              <h6>Group Co-Leader</h6>
+              <h6>Front Web Dev</h6>
+              <p>
+                  Hello there I am Khan Farhan, Co-Leader of Floran. So currently I am 2nd year Computer engg student and also the guy who helped 
+                  zaki in front end development of the Floran Classroom. So when zaki came up with this idea at that moment it was impossible for me to even think of completing it.
+                  <br>But he trusted his team, so here we are presenting you the floran classroom.
+                  <br>Hope you like our work
+              </p>
+              
+              <div class="social-links">
+                  <ul>
+                      <li ><a href="https://github.com/bhagwanZaki" class="github view"><i class="fab fa-github"></i></a></li>
+                      <li ><a href="https://www.linkedin.com/in/zaki-ur-rahman-farid-khan-8740a81b1/" class="linkedin"><i class="fab fa-linkedin"></i></li>
+                      <li ><a href="https://www.instagram.com/zakiurrahmankhan/" class="instgram"><i class="fab fa-instagram"></i></a></li>
+                  </ul>
+              </div>
+              
+          </div>
+      </div>
+  </div>
+  <footer class="page-footer font-small special-color-dark">
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2020 Copyright: Floran Classroom
+      </div>
+      <!-- Copyright -->
+    </footer>
+  
+</div>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+      startEvent: 'DOMContentLoaded',
+      offset:200,
+      duration:1000,
+      once:false,
+  });
+</script>
 {% endblock content %}
