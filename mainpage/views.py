@@ -86,7 +86,7 @@ def dashboard(request):
         request_roll_year = Student.objects.filter(Roll_number=roll_number).values()[0]['current_year_id']        
         year = Year.objects.filter(id=request_roll_year)        
         for i in year:
-                subject = i.subjects.all()
+            subject = i.subjects.all()
         assignment = Elements.objects.filter(subject__in=subject)
         submission = Submissions.objects.filter(user=request.user)
         subject_name = []

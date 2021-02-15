@@ -139,7 +139,7 @@ class SubmissionUpdateView(SuccessMessageMixin, UpdateView):
         form.instance.assignment = Elements.objects.get(pk=self.kwargs['pk'])
         form.instance.user = self.request.user
         form.instance.submission_status = 'submitted'
-        return super(SubmissionCreateView, self).form_valid(form)
+        return super(SubmissionUpdateView, self).form_valid(form)
 
 class SubmissionDetailView(DetailView):
     model = Submissions
