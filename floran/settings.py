@@ -164,7 +164,7 @@ USE_TZ = True
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 MEDIA_ROOT =os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dhzbnlmz6',
