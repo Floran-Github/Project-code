@@ -38,7 +38,7 @@ openpyxl==3.0.5
 Pillow==8.3.2
 psycopg2==2.8.5
 pycparser==2.20
-PyJWT==1.7.1
+PyJWT==2.4.0
 pylint==2.5.3
 python-dateutil==2.8.1
 python3-openid==3.2.0
